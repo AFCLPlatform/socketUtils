@@ -1,5 +1,8 @@
 package at.uibk.dps;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -22,8 +25,18 @@ public class SocketUtils {
      */
     public static void sendJsonString(Socket destinationSocket, String jsonString) throws IOException {
         OutputStreamWriter osw = new OutputStreamWriter(destinationSocket.getOutputStream(), StandardCharsets.UTF_8);
-        osw.write(jsonString, 0, jsonString.length());
+        osw.write(jsonString + ConstantsNetwork.MESSAGE_TERMINATION_STRING, 0, jsonString.length());
         osw.flush();
+    }
+
+    /**
+     * Sends the given Json String to the given socket.
+     * @param destinationSocket to send string to.
+     * @param jsonObject to convert to string and send to socket.
+     * @throws IOException on failure.
+     */
+    public static void sendJsonObject(Socket destinationSocket, JsonObject jsonObject) throws IOException {
+        sendJsonString(destinationSocket,new Gson().toJson(jsonObject) + ConstantsNetwork.MESSAGE_TERMINATION_STRING);
     }
 
     /**
@@ -47,6 +60,10 @@ public class SocketUtils {
             data = reader.read();
         }
         return getJsonPayload(buffer);
+    }
+
+    public static JsonObject receiveJsonObject(Socket sourceSocket) throws IOException {
+        return new Gson().fromJson(receiveJsonString(sourceSocket), JsonObject.class);
     }
 
     /**
