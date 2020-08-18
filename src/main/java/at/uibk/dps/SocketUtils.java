@@ -25,7 +25,7 @@ public class SocketUtils {
      */
     public static void sendJsonString(Socket destinationSocket, String jsonString) throws IOException {
         OutputStreamWriter osw = new OutputStreamWriter(destinationSocket.getOutputStream(), StandardCharsets.UTF_8);
-        osw.write(jsonString + ConstantsNetwork.MESSAGE_TERMINATION_STRING, 0, jsonString.length());
+        osw.write(jsonString + ConstantsNetwork.MESSAGE_TERMINATION_STRING, 0, jsonString.length() + ConstantsNetwork.MESSAGE_TERMINATION_STRING.length());
         osw.flush();
     }
 
@@ -36,7 +36,7 @@ public class SocketUtils {
      * @throws IOException on failure.
      */
     public static void sendJsonObject(Socket destinationSocket, JsonObject jsonObject) throws IOException {
-        sendJsonString(destinationSocket,new Gson().toJson(jsonObject) + ConstantsNetwork.MESSAGE_TERMINATION_STRING);
+        sendJsonString(destinationSocket,new Gson().toJson(jsonObject));
     }
 
     /**
