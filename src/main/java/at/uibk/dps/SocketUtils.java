@@ -16,14 +16,17 @@ import java.nio.charset.StandardCharsets;
  */
 public class SocketUtils {
 
-	private SocketUtils() {
-	}
-	
+    /**
+     * Default constructor.
+     */
+    private SocketUtils() {
+    }
+
     /**
      * Sends the given Json String to the given socket.
      *
      * @param destinationSocket to send string to.
-     * @param jsonString to send.
+     * @param jsonString        to send.
      * @throws IOException on failure.
      */
     public static void sendJsonString(Socket destinationSocket, String jsonString) throws IOException {
@@ -33,13 +36,25 @@ public class SocketUtils {
     }
 
     /**
-     * Sends the given Json String to the given socket.
+     * Sends the given Json Object to the given socket.
+     *
      * @param destinationSocket to send string to.
-     * @param jsonObject to convert to string and send to socket.
+     * @param jsonObject        to convert to string and send to socket.
      * @throws IOException on failure.
      */
     public static void sendJsonObject(Socket destinationSocket, JsonObject jsonObject) throws IOException {
-        sendJsonString(destinationSocket,new Gson().toJson(jsonObject));
+        sendJsonString(destinationSocket, new Gson().toJson(jsonObject));
+    }
+
+    /**
+     * Sends the given generic Json Object to the given socket.
+     *
+     * @param destinationSocket to send string to.
+     * @param jsonObject        to convert to string and send to socket.
+     * @throws IOException on failure.
+     */
+    public static<T> void sendJsonObject(Socket destinationSocket, T jsonObject) throws IOException {
+        sendJsonString(destinationSocket, new Gson().toJson(jsonObject));
     }
 
     /**
@@ -48,7 +63,6 @@ public class SocketUtils {
      * @param sourceSocket the socket to listen to.
      * @return the json string.
      * @throws IOException on failure.
-     *
      */
     public static String receiveJsonString(Socket sourceSocket) throws IOException {
         InputStreamReader reader = new InputStreamReader(sourceSocket.getInputStream(), StandardCharsets.UTF_8);
@@ -65,8 +79,26 @@ public class SocketUtils {
         return getJsonPayload(buffer);
     }
 
+    /**
+     * Receives and returns a json object from the given socket.
+     *
+     * @param sourceSocket the socket to listen to.
+     * @return the json object.
+     * @throws IOException on failure.
+     */
     public static JsonObject receiveJsonObject(Socket sourceSocket) throws IOException {
         return new Gson().fromJson(receiveJsonString(sourceSocket), JsonObject.class);
+    }
+
+    /**
+     * Receives and returns a generic json object from the given socket.
+     *
+     * @param sourceSocket the socket to listen to.
+     * @return the generic json object.
+     * @throws IOException on failure.
+     */
+    public static <T> T receiveJsonObject(Socket sourceSocket, Class<T> objectClass) throws IOException {
+        return new Gson().fromJson(receiveJsonString(sourceSocket), objectClass);
     }
 
     /**
@@ -75,7 +107,7 @@ public class SocketUtils {
      *
      * @param buffer the message buffer.
      * @return {@code true} iff the given buffer ends with the string defined as the
-     *         termination string of messages.
+     * termination string of messages.
      */
     protected static boolean checkMessageEnd(StringBuffer buffer) {
         int start = buffer.length() - ConstantsNetwork.MESSAGE_TERMINATION_STRING.length();
