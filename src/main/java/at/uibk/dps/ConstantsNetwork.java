@@ -1,9 +1,18 @@
 package at.uibk.dps;
 
+/**
+ * Constants defined within the network.
+ */
 public class ConstantsNetwork {
-    private ConstantsNetwork() {
-    }
 
+    /**
+     * Default constructor.
+     */
+    private ConstantsNetwork() { }
+
+    /**
+     * Request type.
+     */
     public enum RequestType {
         ATTRIBUTE_EXEC_TIME
     }
