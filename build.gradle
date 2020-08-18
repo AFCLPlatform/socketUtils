@@ -13,8 +13,6 @@ apply plugin: 'com.github.johnrengelman.shadow'
 group 'at.uibk.dps'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
-
 repositories {
     mavenCentral()
 }
