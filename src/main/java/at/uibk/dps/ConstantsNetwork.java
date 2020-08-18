@@ -4,7 +4,7 @@ public class ConstantsNetwork {
     private ConstantsNetwork() {
     }
 
-    public enum RequestType{
+    public enum RequestType {
         ATTRIBUTE_EXEC_TIME
     }
 
@@ -29,7 +29,7 @@ public class ConstantsNetwork {
     // message protocol information
 
     // termination string
-    public static final String MESSAGE_TERMINATION_STRING = "END";
+    public static final String MESSAGE_TERMINATION_STRING = "\\0";
 
 
     // JSON message strings
