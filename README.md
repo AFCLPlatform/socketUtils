@@ -19,7 +19,7 @@ Include the generated `.jar` file in your project dependencies.
 ## Example
 #### Send
 ````
-// Connect so server
+// Connect to server
 Socket socket = new Socket("HOST", PORT);
 
 // Create json object
@@ -33,7 +33,7 @@ SocketUtils.sendJsonObject(socket, object);
 #### Recv
 
 ````
-// Start the server socket and accept client connection
+// Start the server socket and accept a client connection
 ServerSocket serverSocket = new ServerSocket(PORT);
 Socket clientSocket = serverSocket.accept();
 
