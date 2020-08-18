@@ -16,6 +16,9 @@ import java.nio.charset.StandardCharsets;
  */
 public class SocketUtils {
 
+	private SocketUtils() {
+	}
+	
     /**
      * Sends the given Json String to the given socket.
      *
@@ -74,7 +77,7 @@ public class SocketUtils {
      * @return {@code true} iff the given buffer ends with the string defined as the
      *         termination string of messages.
      */
-    private static boolean checkMessageEnd(StringBuffer buffer) {
+    protected static boolean checkMessageEnd(StringBuffer buffer) {
         int start = buffer.length() - ConstantsNetwork.MESSAGE_TERMINATION_STRING.length();
         if (start < 0) {
             return false;
@@ -89,7 +92,7 @@ public class SocketUtils {
      * @param msg the raw message.
      * @return the message payload.
      */
-    private static String getJsonPayload(StringBuffer msg) {
+    protected static String getJsonPayload(StringBuffer msg) {
         int endLength = ConstantsNetwork.MESSAGE_TERMINATION_STRING.length();
         return msg.substring(0, msg.length() - endLength);
     }
