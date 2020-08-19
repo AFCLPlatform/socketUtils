@@ -3,11 +3,10 @@ package at.uibk.dps;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 /**
  * This class is used to handle socket utils.
@@ -53,8 +52,21 @@ public class SocketUtils {
      * @param jsonObject        to convert to string and send to socket.
      * @throws IOException on failure.
      */
-    public static<T> void sendJsonObject(Socket destinationSocket, T jsonObject) throws IOException {
+    public static <T> void sendJsonObject(Socket destinationSocket, T jsonObject) throws IOException {
         sendJsonString(destinationSocket, new Gson().toJson(jsonObject));
+    }
+
+    /**
+     * Sends the give byte[] to the given socket.
+     *
+     * @param destinationSocket to send byte[] to.
+     * @param bytes             to send.
+     * @throws IOException on failure.
+     */
+    public static void sendBytes(Socket destinationSocket, byte[] bytes) throws IOException {
+        OutputStream out = destinationSocket.getOutputStream();
+        out.write(bytes);
+        out.flush();
     }
 
     /**
@@ -99,6 +111,46 @@ public class SocketUtils {
      */
     public static <T> T receiveJsonObject(Socket sourceSocket, Class<T> objectClass) throws IOException {
         return new Gson().fromJson(receiveJsonString(sourceSocket), objectClass);
+    }
+
+    /**
+     * Receives and stores a byte[] to a file.
+     *
+     * @param sourceSocket the socket to listen to.
+     * @param fileName     the name and path of the file.
+     * @throws IOException on failure.
+     */
+    public static void receiveBytesAndWriteToFile(Socket sourceSocket, String fileName) throws IOException {
+
+        OutputStream out = new FileOutputStream(fileName);
+
+        /* Get input and output stream */
+        InputStream in = sourceSocket.getInputStream();
+
+        /* Read bytes and write to output stream */
+        byte[] bytes = new byte[16 * 1024];
+        int count;
+        assert in != null;
+        while ((count = in.read(bytes)) >= 0) {
+            out.write(bytes, 0, count);
+            if (in.available() == 0) {
+                break;
+            }
+        }
+        out.flush();
+    }
+
+    /**
+     * Write byte[] to file.
+     *
+     * @param bytes content to write to file.
+     * @param fileName     the name and path of the file.
+     * @throws IOException on failure.
+     */
+    public static void writeToFile(byte[] bytes, String fileName) throws IOException {
+        OutputStream out = new FileOutputStream(fileName);
+        out.write(bytes, 0, bytes.length);
+        out.flush();
     }
 
     /**
