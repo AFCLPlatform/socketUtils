@@ -16,9 +16,16 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
+	
+	// dependency to Opt4J
+	implementation 'com.github.FedorSmirnov89:opt4j:-SNAPSHOT'
+	// dependency to opendse
+	implementation 'com.github.FedorSmirnov89:opendse:-SNAPSHOT'
+	
     implementation 'com.google.code.gson:gson:2.8.5'
 }
 
