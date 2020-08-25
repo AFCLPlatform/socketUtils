@@ -1,12 +1,13 @@
 package at.uibk.dps;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
+import java.util.logging.Logger;
 
 /**
  * This class is used to handle socket utils.
@@ -14,6 +15,8 @@ import java.util.Base64;
  * @author stefanpedratscher
  */
 public class SocketUtils {
+
+    private final static Logger LOGGER = Logger.getLogger(SocketUtils.class.getName());
 
     /**
      * Default constructor.
@@ -29,6 +32,7 @@ public class SocketUtils {
      * @throws IOException on failure.
      */
     public static void sendJsonString(Socket destinationSocket, String jsonString) throws IOException {
+        LOGGER.info("Sending " + jsonString + ConstantsNetwork.MESSAGE_TERMINATION_STRING);
         OutputStreamWriter osw = new OutputStreamWriter(destinationSocket.getOutputStream(), StandardCharsets.UTF_8);
         osw.write(jsonString + ConstantsNetwork.MESSAGE_TERMINATION_STRING, 0, jsonString.length() + ConstantsNetwork.MESSAGE_TERMINATION_STRING.length());
         osw.flush();
@@ -42,7 +46,10 @@ public class SocketUtils {
      * @throws IOException on failure.
      */
     public static void sendJsonObject(Socket destinationSocket, JsonObject jsonObject) throws IOException {
-        sendJsonString(destinationSocket, new Gson().toJson(jsonObject));
+        sendJsonString(destinationSocket, new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+                .create()
+                .toJson(jsonObject));
     }
 
     /**
@@ -53,7 +60,10 @@ public class SocketUtils {
      * @throws IOException on failure.
      */
     public static <T> void sendJsonObject(Socket destinationSocket, T jsonObject) throws IOException {
-        sendJsonString(destinationSocket, new Gson().toJson(jsonObject));
+        sendJsonString(destinationSocket, new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+                .create()
+                .toJson(jsonObject));
     }
 
     /**
@@ -64,6 +74,7 @@ public class SocketUtils {
      * @throws IOException on failure.
      */
     public static void sendBytes(Socket destinationSocket, byte[] bytes) throws IOException {
+        LOGGER.info("Sending byte[]");
         OutputStream out = destinationSocket.getOutputStream();
         out.write(bytes);
         out.flush();
@@ -88,7 +99,9 @@ public class SocketUtils {
             }
             data = reader.read();
         }
-        return getJsonPayload(buffer);
+        String result = getJsonPayload(buffer);
+        LOGGER.info("Received " + result);
+        return result;
     }
 
     /**
@@ -99,7 +112,10 @@ public class SocketUtils {
      * @throws IOException on failure.
      */
     public static JsonObject receiveJsonObject(Socket sourceSocket) throws IOException {
-        return new Gson().fromJson(receiveJsonString(sourceSocket), JsonObject.class);
+        return new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+                .create()
+                .fromJson(receiveJsonString(sourceSocket), JsonObject.class);
     }
 
     /**
@@ -110,7 +126,10 @@ public class SocketUtils {
      * @throws IOException on failure.
      */
     public static <T> T receiveJsonObject(Socket sourceSocket, Class<T> objectClass) throws IOException {
-        return new Gson().fromJson(receiveJsonString(sourceSocket), objectClass);
+        return new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+                .create()
+                .fromJson(receiveJsonString(sourceSocket), objectClass);
     }
 
     /**
