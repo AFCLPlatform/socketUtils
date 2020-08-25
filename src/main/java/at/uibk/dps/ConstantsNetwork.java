@@ -32,8 +32,8 @@ public class ConstantsNetwork {
     public static final int SELECTOR_PORT = 9003;
 
     // attribute service
-    public static final String ATTRIBUTE_SERVICE_HOST = "127.0.0.1";
-    public static final int ATTRIBUTE_SERVICE_PORT = 65432;
+    public static final String ATTRIBUTE_SERVICE_HOST = "predictor";
+    public static final int ATTRIBUTE_SERVICE_PORT = 9006;
 
     // message protocol information
 
