@@ -50,14 +50,16 @@ public class InvocationLogManagerRequest {
         this.executionId = executionId;
     }
 
-    public InvocationLogManagerRequest(LoggerRequestType requestType, Execution execution) {
+    public InvocationLogManagerRequest(LoggerRequestType requestType, Execution execution, int executionId) {
         this.requestType = requestType;
         this.execution = execution;
+        this.executionId = executionId;
     }
 
-    public InvocationLogManagerRequest(LoggerRequestType requestType, Invocation invocation) {
+    public InvocationLogManagerRequest(LoggerRequestType requestType, Invocation invocation, int executionId) {
         this.requestType = requestType;
         this.invocation = invocation;
+        this.executionId = executionId;
     }
 
     public InvocationLogManagerRequest(LoggerRequestType requestType) {
