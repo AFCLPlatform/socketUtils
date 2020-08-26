@@ -3,7 +3,6 @@ package at.uibk.dps.communication.attribute_annotator;
 import java.util.HashMap;
 import java.util.Map;
 
-import at.uibk.dps.communication.entity.AttributeAnnotatorRequestType;
 import net.sf.opendse.model.Mapping;
 import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;

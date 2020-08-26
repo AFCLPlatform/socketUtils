@@ -1,4 +1,4 @@
-package at.uibk.dps.communication.entity;
+package at.uibk.dps.communication.attribute_annotator;
 
 /**
  * The {@link AttributeAnnotatorRequestType} defines the types of request which
