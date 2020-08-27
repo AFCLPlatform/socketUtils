@@ -1,10 +1,6 @@
 package at.uibk.dps.communication.entity;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
 
 /**
  * Represents an invocation of a cloud function.

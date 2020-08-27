@@ -1,4 +1,4 @@
-package at.uibk.dps.communication.attribute_annotator;
+package at.uibk.dps.communication.mapping_annotator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,16 +8,13 @@ import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;
 
 /**
- * The {@link AttributeAnnotatorMappingRequest} is used as the template for the
- * Gson Object used for the queries to the attribute annotator module addressing
- * attributes of mappings..
+ * The {@link MappingStruct} is captures the structure of the JSON which is used
+ * to transmit information about individual mappings between the modules.
  * 
  * @author Fedor Smirnov
  */
-public class AttributeAnnotatorMappingRequest {
+public class MappingStruct {
 
-	protected final AttributeAnnotatorRequestType requestType;
-	
 	protected final String mappingId;
 	protected final Map<String, Object> mappingAttributes;
 
@@ -27,8 +24,7 @@ public class AttributeAnnotatorMappingRequest {
 	protected final String targetId;
 	protected final Map<String, Object> targetAttributes;
 
-	AttributeAnnotatorMappingRequest(AttributeAnnotatorRequestType requestType, Mapping<Task, Resource> m) {
-		this.requestType = requestType;
+	public MappingStruct(Mapping<Task, Resource> m) {
 		this.mappingId = m.getId();
 		this.mappingAttributes = new HashMap<>(); 
 		for (String attrName : m.getAttributeNames()) {
@@ -46,10 +42,6 @@ public class AttributeAnnotatorMappingRequest {
 		for (String attrName : trg.getAttributeNames()) {
 			targetAttributes.put(attrName, trg.getAttribute(attrName));
 		}
-	}
-	
-	public AttributeAnnotatorRequestType getRequestType() {
-		return requestType;
 	}
 
 	public String getMappingId() {
@@ -75,5 +67,5 @@ public class AttributeAnnotatorMappingRequest {
 	public Map<String, Object> getTargetAttributes() {
 		return targetAttributes;
 	}
-	
+
 }
