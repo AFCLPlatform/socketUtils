@@ -43,6 +43,6 @@ public class MappingAnnotatorRequestFactory {
 		for (Mapping<Task, Resource> m : mappings) {
 			mappingList.add(new MappingStruct(m));
 		}
-		return new MappingAnnotatorInitRequest(typeList, mappingList);
+		return new MappingAnnotatorInitRequest(MappingAnnotatorRequestType.INIT_REQUEST, typeList, mappingList);
 	}
 }

@@ -10,10 +10,13 @@ import java.util.List;
  */
 public class MappingAnnotatorInitRequest {
 
+	protected final MappingAnnotatorRequestType requestType;
 	protected final List<MappingAnnotatorRequestType> requestTypes;
 	protected final List<MappingStruct> mappings;
 
-	protected MappingAnnotatorInitRequest(List<MappingAnnotatorRequestType> requestTypes, List<MappingStruct> mappings) {
+	protected MappingAnnotatorInitRequest(MappingAnnotatorRequestType requestType,
+			List<MappingAnnotatorRequestType> requestTypes, List<MappingStruct> mappings) {
+		this.requestType = requestType;
 		this.requestTypes = requestTypes;
 		this.mappings = mappings;
 	}
