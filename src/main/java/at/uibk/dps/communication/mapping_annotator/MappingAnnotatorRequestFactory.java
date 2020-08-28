@@ -37,9 +37,12 @@ public class MappingAnnotatorRequestFactory {
 	 * @return the request object for the init
 	 */
 	public static MappingAnnotatorInitRequest generateMappingInitRequest(Set<MappingAnnotatorRequestType> requestTypes,
-			Set<MappingStruct> mappings) {
+			Set<Mapping<Task, Resource>> mappings) {
 		List<MappingAnnotatorRequestType> typeList = new ArrayList<>(requestTypes);
-		List<MappingStruct> mappingList = new ArrayList<>(mappings);
+		List<MappingStruct> mappingList = new ArrayList<>();
+		for (Mapping<Task, Resource> m : mappings) {
+			mappingList.add(new MappingStruct(m));
+		}
 		return new MappingAnnotatorInitRequest(typeList, mappingList);
 	}
 }

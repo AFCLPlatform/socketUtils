@@ -24,7 +24,7 @@ public class MappingStruct {
 	protected final String targetId;
 	protected final Map<String, Object> targetAttributes;
 
-	public MappingStruct(Mapping<Task, Resource> m) {
+	protected MappingStruct(Mapping<Task, Resource> m) {
 		this.mappingId = m.getId();
 		this.mappingAttributes = new HashMap<>(); 
 		for (String attrName : m.getAttributeNames()) {
