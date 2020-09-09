@@ -27,6 +27,11 @@ dependencies {
 	implementation 'com.github.FedorSmirnov89:opendse:-SNAPSHOT'
 	
     implementation 'com.google.code.gson:gson:2.8.5'
+	
+	// https://mvnrepository.com/artifact/org.javatuples/javatuples
+	// to have access to tuples to build key-value pairs
+	compile group: 'org.javatuples', name: 'javatuples', version: '1.2'
+	
 }
 
 shadowJar {
