@@ -22,4 +22,14 @@ public class ResourceManagerRequestFactory {
     public static ResourceManagerRequest getFreeResourcesByFunctions(List<FunctionDetails> functionLinks) {
         return new ResourceManagerRequest(ResourceRequestType.GET_FREE_RESOURCES, functionLinks);
     }
+
+    /**
+     * Get a request for the all function invocations.
+     *
+     * @param functionLinks function links.
+     * @return resource manager request.
+     */
+    public static ResourceManagerRequest getAllResourcesByFunctions(List<FunctionDetails> functionLinks) {
+        return new ResourceManagerRequest(ResourceRequestType.GET_ALL_RESOURCES, functionLinks);
+    }
 }

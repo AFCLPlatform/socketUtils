@@ -16,4 +16,11 @@ public class SelectorRequestFactory {
     public static SelectorRequest getFreeResourcesByFunctionType(String functionType) {
         return new SelectorRequest(functionType, ResourceRequestType.GET_FREE_RESOURCES);
     }
+
+    /**
+     * Return a selector request for all function resources.
+     */
+    public static SelectorRequest getAllResourcesByFunctionType(String functionType) {
+        return new SelectorRequest(functionType, ResourceRequestType.GET_ALL_RESOURCES);
+    }
 }
