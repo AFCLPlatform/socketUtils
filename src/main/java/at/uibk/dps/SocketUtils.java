@@ -1,11 +1,12 @@
 package at.uibk.dps;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
@@ -22,6 +23,17 @@ public class SocketUtils {
      * Default constructor.
      */
     private SocketUtils() {
+    }
+    
+    /**
+     * Method to enable a local, non-module based execution of the scheduler.
+     * 
+     * @param remoteHost the string of the host, if executed as a module
+     * @param localExecution {@code true} iff local execution
+     * @return the host string to use
+     */
+    public static String getSocketHost(String remoteHost, boolean localExecution) throws UnknownHostException{
+    	return localExecution ? InetAddress.getLocalHost().getHostName() : remoteHost;
     }
 
     /**
