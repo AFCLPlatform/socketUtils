@@ -14,10 +14,17 @@ import java.io.IOException;
 public class EnactmentEngineRequestFactory {
 
     /**
-     * Returns a selector request for free function resources.
+     * Returns an enactment engine request by workflow file content.
      */
     public static EnactmentEngineRequest getEnactmentEngineRequestFileContent(byte[] fileContent) {
         return new EnactmentEngineRequest(fileContent);
+    }
+
+    /**
+     * Returns an enactment engine request by workflow file content and workflow input file.
+     */
+    public static EnactmentEngineRequest getEnactmentEngineRequestFileContent(byte[] fileContent, byte[] inputContent) {
+        return new EnactmentEngineRequest(fileContent, inputContent);
     }
     
     /**
