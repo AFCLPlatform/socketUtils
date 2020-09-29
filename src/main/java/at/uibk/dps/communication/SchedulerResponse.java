@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 
 /**
  * This class is used to define the response from
- * the enactment engine module.
+ * the scheduler module.
  *
  * @author stefanpedratscher
  */
@@ -28,16 +28,17 @@ public class SchedulerResponse {
     private Statistics enactmentEngineStatistics;
 
     /**
-     * Statistics for the enactment engine.
+     * Statistics for the scheduler engine.
      */
     private Statistics schedulerStatistics;
 
     /**
-     * Default constructor for enactment engine response.
+     * Default constructor for scheduler response.
      *
      * @param workflowResult result of the workflow.
      * @param executionId execution identifier of the workflow execution.
      * @param enactmentEngineStatistics statistics for the enactment engine.
+     * @param schedulerStatistics statistics for the scheduler.
      */
     public SchedulerResponse(JsonObject workflowResult, int executionId, Statistics enactmentEngineStatistics, Statistics schedulerStatistics) {
         this.workflowResult = workflowResult;

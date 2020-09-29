@@ -3,7 +3,7 @@ package at.uibk.dps.communication;
 
 /**
  * This class is used to define the request which will be sent
- * to the enactment engine module.
+ * to the scheduler module.
  *
  * @author stefanpedratscher
  */
