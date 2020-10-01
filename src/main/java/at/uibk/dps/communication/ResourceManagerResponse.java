@@ -6,8 +6,8 @@ import at.uibk.dps.communication.entity.Status;
 import java.util.List;
 
 /**
- * This class is used to define the response from
- * the resource manager module.
+ * This class is used to define the response from the resource
+ * manager module (sent to the implementation selector).
  *
  * @author stefanpedratscher
  */

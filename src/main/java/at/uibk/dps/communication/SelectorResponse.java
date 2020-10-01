@@ -5,8 +5,8 @@ import at.uibk.dps.communication.entity.FunctionDetails;
 import java.util.List;
 
 /**
- * This class is used to define the response from
- * the implementation selector module.
+ * This class is used to define the response from the
+ * implementation selector module (sent to the scheduler).
  *
  * @author stefanpedratscher
  */

@@ -6,8 +6,8 @@ import at.uibk.dps.communication.entity.ResourceRequestType;
 import java.util.List;
 
 /**
- * This class is used to define the request which will be sent
- * to the resource manager module.
+ * This class is used to define the request which will be sent from
+ * the implementation selector to the resource manager module.
  *
  * @author stefanpedratscher
  */

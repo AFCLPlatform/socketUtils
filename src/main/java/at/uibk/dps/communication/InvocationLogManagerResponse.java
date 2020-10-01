@@ -7,8 +7,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * This class is used to define the response of
- * the invocation log manager module.
+ * This class is used to define the response of the invocation log manager
+ * module (sent to mapping annotator, AFCLPortal or enactment engine).
  *
  * @author stefanpedratscher
  */

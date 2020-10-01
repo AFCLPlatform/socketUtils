@@ -6,8 +6,8 @@ import at.uibk.dps.communication.entity.Invocation;
 import at.uibk.dps.communication.entity.LoggerRequestType;
 
 /**
- * This class is used to define the request which will be sent
- * to the invocation log manager module.
+ * This class is used to define the request which will be sent from the mapping annotator,
+ * AFCLPortal or enactment engine to the invocation log manager module.
  *
  * @author stefanpedratscher
  */

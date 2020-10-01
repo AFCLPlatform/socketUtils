@@ -95,7 +95,8 @@ public class SocketUtils {
     /**
      * Receives and returns a json string from the given socket.
      *
-     * @param sourceSocket the socket to listen to.
+     * @param sourceSocket the socket to listen
+     *                     to.
      * @return the json string.
      * @throws IOException on failure.
      */

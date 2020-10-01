@@ -3,8 +3,8 @@ package at.uibk.dps.communication;
 import at.uibk.dps.communication.entity.ResourceRequestType;
 
 /**
- * This class is used to define the request which will be sent to the
- * implementation selector module.
+ * This class is used to define the request which will be sent from
+ * the scheduler to the implementation selector module.
  *
  * @author stefanpedratscher
  */

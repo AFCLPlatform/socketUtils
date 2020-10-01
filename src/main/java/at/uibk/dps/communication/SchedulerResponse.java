@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 
 /**
  * This class is used to define the response from
- * the scheduler module.
+ * the scheduler module (sent to the AFCLPortal).
  *
  * @author stefanpedratscher
  */
