@@ -4,7 +4,7 @@ import at.uibk.dps.communication.entity.AnnotatorRequestType;
 
 /**
  * This class is used to define the request which will be sent
- * to the mapping annotator module.
+ * from the scheduler to the mapping annotator module.
  *
  * @author stefanpedratscher
  */

@@ -7,7 +7,7 @@ import java.io.IOException;
 
 /**
  * This class is used to define the request which will be sent
- * to the scheduler module.
+ * from the AFCLPortal to the scheduler module.
  *
  * @author stefanpedratscher
  */

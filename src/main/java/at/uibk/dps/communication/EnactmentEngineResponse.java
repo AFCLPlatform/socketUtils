@@ -5,8 +5,8 @@ import at.uibk.dps.communication.entity.Statistics;
 import com.google.gson.JsonObject;
 
 /**
- * This class is used to define the response from
- * the enactment engine module.
+ * This class is used to define the response from the enactment
+ * engine module (sent to the scheduler or AFCLPortal).
  *
  * @author stefanpedratscher
  */

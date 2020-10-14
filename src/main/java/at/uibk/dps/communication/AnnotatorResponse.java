@@ -3,8 +3,8 @@ package at.uibk.dps.communication;
 import java.math.BigDecimal;
 
 /**
- * This class is used to define the response from
- * the mapping annotator module.
+ * This class is used to define the response from the
+ * mapping annotator module (sent to the scheduler).
  *
  * @author stefanpedratscher
  */

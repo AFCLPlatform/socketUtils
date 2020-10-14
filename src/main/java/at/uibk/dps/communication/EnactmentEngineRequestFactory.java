@@ -6,8 +6,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * This class is used to define the request which will be sent to the enactment
- * engine module.
+ * This class is used to define the request which will be sent from
+ * the scheduler or AFCLPortal to the enactment engine module.
  *
  * @author stefanpedratscher
  */
