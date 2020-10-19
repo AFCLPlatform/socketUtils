@@ -20,12 +20,17 @@ public class EnactmentEngineRequest {
     private byte[] workflowInputFileContent;
 
     /**
+     * Log results in database
+     */
+    boolean logResults;
+
+    /**
      * Default constructor.
      *
      * @param workflowFileContent content of the workflow file.
      */
-    public EnactmentEngineRequest(byte[] workflowFileContent) {
-        this(workflowFileContent, null);
+    public EnactmentEngineRequest(byte[] workflowFileContent, boolean logResults) {
+        this(workflowFileContent, null, logResults);
     }
 
     /**
@@ -34,7 +39,8 @@ public class EnactmentEngineRequest {
      * @param workflowFileContent content of the workflow file.
      * @param workflowInputFileContent content of the workflow input file.
      */
-    public EnactmentEngineRequest(byte[] workflowFileContent, byte[] workflowInputFileContent){
+    public EnactmentEngineRequest(byte[] workflowFileContent, byte[] workflowInputFileContent, boolean logResults){
+        this.logResults = logResults;
         this.workflowFileContent = workflowFileContent;
         this.workflowInputFileContent = workflowInputFileContent;
     }
@@ -52,4 +58,8 @@ public class EnactmentEngineRequest {
     public byte[] getWorkflowInputFileContent() { return workflowInputFileContent; }
 
     public void setWorkflowInputFileContent(byte[] workflowInputFileContent) { this.workflowInputFileContent = workflowInputFileContent; }
+
+    public boolean isLogResults() { return logResults; }
+
+    public void setLogResults(boolean logResults) { this.logResults = logResults; }
 }

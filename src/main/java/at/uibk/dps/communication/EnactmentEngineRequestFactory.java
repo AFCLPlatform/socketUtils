@@ -16,16 +16,16 @@ public class EnactmentEngineRequestFactory {
 	/**
 	 * Returns an enactment engine request by workflow file content.
 	 */
-	public static EnactmentEngineRequest getEnactmentEngineRequestFileContent(byte[] fileContent) {
-		return new EnactmentEngineRequest(fileContent);
+	public static EnactmentEngineRequest getEnactmentEngineRequestFileContent(byte[] fileContent, boolean logResults) {
+		return new EnactmentEngineRequest(fileContent, logResults);
 	}
 
 	/**
 	 * Returns an enactment engine request by workflow file content and workflow
 	 * input file.
 	 */
-	public static EnactmentEngineRequest getEnactmentEngineRequestFileContent(byte[] fileContent, byte[] inputContent) {
-		return new EnactmentEngineRequest(fileContent, inputContent);
+	public static EnactmentEngineRequest getEnactmentEngineRequestFileContent(byte[] fileContent, byte[] inputContent, boolean logResults) {
+		return new EnactmentEngineRequest(fileContent, inputContent, logResults);
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class EnactmentEngineRequestFactory {
 	 *         the provided file.
 	 * @throws IOException
 	 */
-	public static EnactmentEngineRequest getEnactmentEngineRequestFilePath(String filePath, byte[] inputContent)
+	public static EnactmentEngineRequest getEnactmentEngineRequestFilePath(String filePath, byte[] inputContent, boolean logResults)
 			throws IOException {
 		File file = new File(filePath);
 		FileInputStream fis = new FileInputStream(file);
@@ -47,9 +47,9 @@ public class EnactmentEngineRequestFactory {
 		bis.read(data, 0, data.length);
 		bis.close();
 		if (inputContent == null) {
-			return getEnactmentEngineRequestFileContent(data);
+			return getEnactmentEngineRequestFileContent(data, logResults);
 		} else {
-			return getEnactmentEngineRequestFileContent(data, inputContent);
+			return getEnactmentEngineRequestFileContent(data, inputContent, logResults);
 		}
 	}
 
@@ -60,7 +60,7 @@ public class EnactmentEngineRequestFactory {
 	 * @return
 	 * @throws IOException
 	 */
-	public static EnactmentEngineRequest getEnactmentEngineRequestFilePath(String filePath) throws IOException {
-		return getEnactmentEngineRequestFilePath(filePath, null);
+	public static EnactmentEngineRequest getEnactmentEngineRequestFilePath(String filePath, boolean logResults) throws IOException {
+		return getEnactmentEngineRequestFilePath(filePath, null, logResults);
 	}
 }

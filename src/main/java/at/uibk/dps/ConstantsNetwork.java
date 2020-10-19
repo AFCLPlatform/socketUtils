@@ -35,6 +35,10 @@ public class ConstantsNetwork {
     public static final String ATTRIBUTE_SERVICE_HOST = "predictor";
     public static final int ATTRIBUTE_SERVICE_PORT = 9006;
 
+    // logger service
+    public static final String LOGGER_SERVICE_HOST = "logger-service";
+    public static final int LOGGER_SERVICE_PORT = 9005;
+
     // message protocol information
 
     // termination string
