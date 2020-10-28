@@ -184,6 +184,23 @@ public class SocketUtils {
         out.write(bytes, 0, bytes.length);
         out.flush();
     }
+    
+    /**
+     * Reads a file at the specified path and converts it to an array of bytes.
+     * 
+     * @param filePath the path to the file
+     * @return the byte array
+     * @throws IOException 
+     */
+    public static byte[] readFileToBytes(String filePath) throws IOException{
+    	File file = new File(filePath);
+		FileInputStream fis = new FileInputStream(file);
+		byte[] result = new byte[(int) file.length()];
+		BufferedInputStream bis = new BufferedInputStream(fis);
+		bis.read(result, 0, result.length);
+		bis.close();
+		return result;
+    }
 
     /**
      * Returns {@code true} iff the given buffer ends with the string defined as the

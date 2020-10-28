@@ -1,9 +1,8 @@
 package at.uibk.dps.communication;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+
+import at.uibk.dps.SocketUtils;
 
 /**
  * This class is used to define the request which will be sent from
@@ -40,16 +39,11 @@ public class EnactmentEngineRequestFactory {
 	 */
 	public static EnactmentEngineRequest getEnactmentEngineRequestFilePath(String filePath, byte[] inputContent, boolean logResults)
 			throws IOException {
-		File file = new File(filePath);
-		FileInputStream fis = new FileInputStream(file);
-		byte[] data = new byte[(int) file.length()];
-		BufferedInputStream bis = new BufferedInputStream(fis);
-		bis.read(data, 0, data.length);
-		bis.close();
+		byte[] workFlowData = SocketUtils.readFileToBytes(filePath);
 		if (inputContent == null) {
-			return getEnactmentEngineRequestFileContent(data, logResults);
+			return getEnactmentEngineRequestFileContent(workFlowData, logResults);
 		} else {
-			return getEnactmentEngineRequestFileContent(data, inputContent, logResults);
+			return getEnactmentEngineRequestFileContent(workFlowData, inputContent, logResults);
 		}
 	}
 
