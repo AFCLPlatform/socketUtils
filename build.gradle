@@ -20,6 +20,9 @@ repositories {
 	maven { url 'https://jitpack.io' }
 }
 
+sourceCompatibility = 11
+targetCompatibility = 11
+
 dependencies {
 	
 	// dependency to Opt4J
