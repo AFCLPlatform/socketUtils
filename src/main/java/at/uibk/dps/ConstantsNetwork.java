@@ -20,7 +20,7 @@ public class ConstantsNetwork {
     // module address information
 
     // enactment engine
-    public static final String EE_HOST = "ee-service";
+    public static final String EE_HOST = "ee-service"
     public static final int EE_PORT = 9000;
 
     // scheduler
