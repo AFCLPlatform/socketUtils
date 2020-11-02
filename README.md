@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The aim of this project is used to simplify the connection between sockets.
+The aim of this project is to simplify the connection between the sockets of the various modules of the AFCL platform.
 
 ## Pre-Requisites
 - Gradle
