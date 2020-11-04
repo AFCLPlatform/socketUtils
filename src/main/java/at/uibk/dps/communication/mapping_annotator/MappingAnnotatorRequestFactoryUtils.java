@@ -12,14 +12,14 @@ import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;
 
 /**
- * The {@link MappingAnnotatorRequestFactory} is used to generate the
+ * The {@link MappingAnnotatorRequestFactoryUtils} is used to generate the
  * {@link MappingAnnotatorAttributeRequest} objects used for mapping queries to
  * the Attribute Annotator module.
  * 
  * @author Fedor Smirnov
  *
  */
-public class MappingAnnotatorRequestFactory {
+public class MappingAnnotatorRequestFactoryUtils {
 
 	/**
 	 * 

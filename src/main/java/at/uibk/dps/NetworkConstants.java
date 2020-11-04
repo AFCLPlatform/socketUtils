@@ -3,19 +3,7 @@ package at.uibk.dps;
 /**
  * Constants defined within the network.
  */
-public class ConstantsNetwork {
-
-    /**
-     * Default constructor.
-     */
-    private ConstantsNetwork() { }
-
-    /**
-     * Request type.
-     */
-    public enum RequestType {
-        ATTRIBUTE_EXEC_TIME
-    }
+public class NetworkConstants {
 
     // module address information
 
@@ -49,5 +37,16 @@ public class ConstantsNetwork {
 
     // response of the attribute service
     public static final String JSON_RESPONSE_ATTR_KEY = "queried attribute";
+	
+    /**
+     * Default constructor.
+     */
+    private NetworkConstants() { }
 
+    /**
+     * Request type.
+     */
+    public enum RequestType {
+        ATTRIBUTE_EXEC_TIME
+    }
 }

@@ -35,4 +35,4 @@ jobs:
       uses: codacy/codacy-analysis-cli-action@master
       with:
         project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-        max-allowed-issues: 30
+        max-allowed-issues: 10

@@ -44,9 +44,9 @@ public class SocketUtils {
      * @throws IOException on failure.
      */
     public static void sendJsonString(Socket destinationSocket, String jsonString) throws IOException {
-        LOGGER.info("Sending " + jsonString + ConstantsNetwork.MESSAGE_TERMINATION_STRING);
+        LOGGER.info("Sending " + jsonString + NetworkConstants.MESSAGE_TERMINATION_STRING);
         OutputStreamWriter osw = new OutputStreamWriter(destinationSocket.getOutputStream(), StandardCharsets.UTF_8);
-        osw.write(jsonString + ConstantsNetwork.MESSAGE_TERMINATION_STRING, 0, jsonString.length() + ConstantsNetwork.MESSAGE_TERMINATION_STRING.length());
+        osw.write(jsonString + NetworkConstants.MESSAGE_TERMINATION_STRING, 0, jsonString.length() + NetworkConstants.MESSAGE_TERMINATION_STRING.length());
         osw.flush();
     }
 
@@ -211,11 +211,11 @@ public class SocketUtils {
      * termination string of messages.
      */
     protected static boolean checkMessageEnd(StringBuffer buffer) {
-        int start = buffer.length() - ConstantsNetwork.MESSAGE_TERMINATION_STRING.length();
+        int start = buffer.length() - NetworkConstants.MESSAGE_TERMINATION_STRING.length();
         if (start < 0) {
             return false;
         } else {
-            return ConstantsNetwork.MESSAGE_TERMINATION_STRING.equals(buffer.substring(start));
+            return NetworkConstants.MESSAGE_TERMINATION_STRING.equals(buffer.substring(start));
         }
     }
 
@@ -226,7 +226,7 @@ public class SocketUtils {
      * @return the message payload.
      */
     protected static String getJsonPayload(StringBuffer msg) {
-        int endLength = ConstantsNetwork.MESSAGE_TERMINATION_STRING.length();
+        int endLength = NetworkConstants.MESSAGE_TERMINATION_STRING.length();
         return msg.substring(0, msg.length() - endLength);
     }
 }
