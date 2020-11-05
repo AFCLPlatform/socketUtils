@@ -1,6 +1,6 @@
 package at.uibk.dps.communication.mapping_annotator;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 

@@ -26,7 +26,7 @@ public class MappingStruct {
 
 	protected MappingStruct(Mapping<Task, Resource> m) {
 		this.mappingId = m.getId();
-		this.mappingAttributes = new HashMap<>(); 
+		this.mappingAttributes = new HashMap<>();
 		for (String attrName : m.getAttributeNames()) {
 			mappingAttributes.put(attrName, m.getAttribute(attrName));
 		}
@@ -83,46 +83,17 @@ public class MappingStruct {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		if (!(obj instanceof MappingStruct)) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		}
 		MappingStruct other = (MappingStruct) obj;
-		if (mappingAttributes == null) {
-			if (other.mappingAttributes != null)
-				return false;
-		} else if (!mappingAttributes.equals(other.mappingAttributes))
-			return false;
-		if (mappingId == null) {
-			if (other.mappingId != null)
-				return false;
-		} else if (!mappingId.equals(other.mappingId))
-			return false;
-		if (sourceAttributes == null) {
-			if (other.sourceAttributes != null)
-				return false;
-		} else if (!sourceAttributes.equals(other.sourceAttributes))
-			return false;
-		if (sourceId == null) {
-			if (other.sourceId != null)
-				return false;
-		} else if (!sourceId.equals(other.sourceId))
-			return false;
-		if (targetAttributes == null) {
-			if (other.targetAttributes != null)
-				return false;
-		} else if (!targetAttributes.equals(other.targetAttributes))
-			return false;
-		if (targetId == null) {
-			if (other.targetId != null)
-				return false;
-		} else if (!targetId.equals(other.targetId))
-			return false;
-		return true;
+		boolean equal = other.getTargetId().equals(targetId);
+		equal &= other.getSourceId().equals(sourceId);
+		equal &= other.getMappingAttributes().equals(mappingAttributes);
+		equal &= other.getMappingId().equals(mappingId);
+		equal &= other.getSourceAttributes().equals(sourceAttributes);
+		equal &= other.getTargetAttributes().equals(targetAttributes);
+		return equal;
 	}
-	
-	
 
 }
