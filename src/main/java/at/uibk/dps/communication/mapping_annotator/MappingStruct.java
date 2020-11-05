@@ -24,22 +24,27 @@ public class MappingStruct {
 	protected final String targetId;
 	protected final Map<String, Object> targetAttributes;
 
-	protected MappingStruct(Mapping<Task, Resource> m) {
-		this.mappingId = m.getId();
+	/**
+	 * Creates a struct based on the given mapping.
+	 * 
+	 * @param mapping the given mapping
+	 */
+	protected MappingStruct(final Mapping<Task, Resource> mapping) {
+		this.mappingId = mapping.getId();
 		this.mappingAttributes = new HashMap<>();
-		for (String attrName : m.getAttributeNames()) {
-			mappingAttributes.put(attrName, m.getAttribute(attrName));
+		for (final String attrName : mapping.getAttributeNames()) {
+			mappingAttributes.put(attrName, mapping.getAttribute(attrName));
 		}
-		Task src = m.getSource();
+		final Task src = mapping.getSource();
 		this.sourceId = src.getId();
 		this.sourceAttributes = new HashMap<>();
-		for (String attrName : src.getAttributeNames()) {
+		for (final String attrName : src.getAttributeNames()) {
 			sourceAttributes.put(attrName, src.getAttribute(attrName));
 		}
-		Resource trg = m.getTarget();
+		final Resource trg = mapping.getTarget();
 		this.targetId = trg.getId();
 		this.targetAttributes = new HashMap<>();
-		for (String attrName : trg.getAttributeNames()) {
+		for (final String attrName : trg.getAttributeNames()) {
 			targetAttributes.put(attrName, trg.getAttribute(attrName));
 		}
 	}
@@ -82,11 +87,11 @@ public class MappingStruct {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (!(obj instanceof MappingStruct)) {
 			return false;
 		}
-		MappingStruct other = (MappingStruct) obj;
+		final MappingStruct other = (MappingStruct) obj;
 		boolean equal = other.getTargetId().equals(targetId);
 		equal &= other.getSourceId().equals(sourceId);
 		equal &= other.getMappingAttributes().equals(mappingAttributes);
