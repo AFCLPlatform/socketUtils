@@ -32,4 +32,20 @@
     <rule ref="category/java/performance.xml" />
     <rule ref="category/java/security.xml" />
 
+
+	<!-- Comment requirements -->
+	<rule ref="category/java/documentation.xml/CommentRequired">
+	    <properties>
+	        <property name="methodWithOverrideCommentRequirement" value="Ignored" />
+	        <property name="accessorCommentRequirement" value="Ignored" />
+	        <property name="classCommentRequirement" value="Required" />
+	        <property name="fieldCommentRequirement" value="Ignored" />
+	        <property name="publicMethodCommentRequirement" value="Required" />
+	        <property name="protectedMethodCommentRequirement" value="Required" />
+	        <property name="enumCommentRequirement" value="Required" />
+	        <property name="serialVersionUIDCommentRequired" value="Ignored" />
+	        <property name="serialPersistentFieldsCommentRequired" value="Ignored" />
+	    </properties>
+	</rule>
+
 </ruleset>
