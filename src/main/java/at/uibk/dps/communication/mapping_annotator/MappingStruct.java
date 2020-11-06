@@ -92,7 +92,7 @@ public class MappingStruct {
 			return false;
 		}
 		final MappingStruct other = (MappingStruct) obj;
-		boolean equal = other.getTargetId().equals(targetId);
+		boolean equal = targetId.equals(other.getTargetId());
 		equal &= other.getSourceId().equals(sourceId);
 		equal &= other.getMappingAttributes().equals(mappingAttributes);
 		equal &= other.getMappingId().equals(mappingId);
