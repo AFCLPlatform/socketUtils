@@ -1,6 +1,6 @@
 package at.uibk.dps.communication;
 
-import at.uibk.dps.communication.entity.AnnotatorRequestType;
+import at.uibk.dps.communication.AnnotatorRequest.AnnotatorRequestType;
 
 /**
  * This class is used to define the request which will be sent

@@ -56,5 +56,12 @@
 	        <property name="serialPersistentFieldsCommentRequired" value="Ignored" />
 	    </properties>
 	</rule>
+	
+	<!-- Maximum number of methods -->
+	<rule ref="category/java/design.xml/TooManyMethods">
+    <properties>
+        <property name="maxmethods" value="15" />
+    </properties>
+</rule>
 
 </ruleset>

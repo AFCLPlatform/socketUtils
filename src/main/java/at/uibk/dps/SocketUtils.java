@@ -8,6 +8,9 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 /**
@@ -15,9 +18,11 @@ import java.util.logging.Logger;
  *
  * @author stefanpedratscher
  */
-public class SocketUtils {
+public final class SocketUtils {
 
     private final static Logger LOGGER = Logger.getLogger(SocketUtils.class.getName());
+    
+    protected final static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.S";
 
     /**
      * Default constructor.
@@ -32,7 +37,7 @@ public class SocketUtils {
      * @param localExecution {@code true} iff local execution
      * @return the host string to use
      */
-    public static String getSocketHost(String remoteHost, boolean localExecution) throws UnknownHostException{
+    public static String getSocketHost(final String remoteHost,final boolean localExecution) throws UnknownHostException{
     	return localExecution ? InetAddress.getLocalHost().getHostName() : remoteHost;
     }
 
@@ -43,9 +48,14 @@ public class SocketUtils {
      * @param jsonString        to send.
      * @throws IOException on failure.
      */
-    public static void sendJsonString(Socket destinationSocket, String jsonString) throws IOException {
-        LOGGER.info("Sending " + jsonString + NetworkConstants.MESSAGE_TERMINATION_STRING);
-        OutputStreamWriter osw = new OutputStreamWriter(destinationSocket.getOutputStream(), StandardCharsets.UTF_8);
+    public static void sendJsonString(final Socket destinationSocket,final String jsonString) throws IOException {
+        LOGGER.info(new Supplier<String>() {
+			@Override
+			public String get() {
+				return "Sending " + jsonString + NetworkConstants.MESSAGE_TERMINATION_STRING;
+			}
+		});
+        final OutputStreamWriter osw = new OutputStreamWriter(destinationSocket.getOutputStream(), StandardCharsets.UTF_8);
         osw.write(jsonString + NetworkConstants.MESSAGE_TERMINATION_STRING, 0, jsonString.length() + NetworkConstants.MESSAGE_TERMINATION_STRING.length());
         osw.flush();
     }
@@ -57,9 +67,9 @@ public class SocketUtils {
      * @param jsonObject        to convert to string and send to socket.
      * @throws IOException on failure.
      */
-    public static void sendJsonObject(Socket destinationSocket, JsonObject jsonObject) throws IOException {
+    public static void sendJsonObject(final Socket destinationSocket,final JsonObject jsonObject) throws IOException {
         sendJsonString(destinationSocket, new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+                .setDateFormat(DATE_FORMAT)
                 .create()
                 .toJson(jsonObject));
     }
@@ -71,9 +81,9 @@ public class SocketUtils {
      * @param jsonObject        to convert to string and send to socket.
      * @throws IOException on failure.
      */
-    public static <T> void sendJsonObject(Socket destinationSocket, T jsonObject) throws IOException {
+    public static <T> void sendJsonObject(final Socket destinationSocket, final T jsonObject) throws IOException {
         sendJsonString(destinationSocket, new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+                .setDateFormat(DATE_FORMAT)
                 .create()
                 .toJson(jsonObject));
     }
@@ -85,7 +95,7 @@ public class SocketUtils {
      * @param bytes             to send.
      * @throws IOException on failure.
      */
-    public static void sendBytes(Socket destinationSocket, byte[] bytes) throws IOException {
+    public static void sendBytes(final Socket destinationSocket,final byte[] bytes) throws IOException {
         LOGGER.info("Sending byte[]");
         OutputStream out = destinationSocket.getOutputStream();
         out.write(bytes);
@@ -100,8 +110,8 @@ public class SocketUtils {
      * @return the json string.
      * @throws IOException on failure.
      */
-    public static String receiveJsonString(Socket sourceSocket) throws IOException {
-        InputStreamReader reader = new InputStreamReader(sourceSocket.getInputStream(), StandardCharsets.UTF_8);
+    public static String receiveJsonString(final Socket sourceSocket) throws IOException {
+        final InputStreamReader reader = new InputStreamReader(sourceSocket.getInputStream(), StandardCharsets.UTF_8);
         int data = reader.read();
         StringBuffer buffer = new StringBuffer();
         while (data != -1) {
@@ -113,7 +123,12 @@ public class SocketUtils {
             data = reader.read();
         }
         String result = getJsonPayload(buffer);
-        LOGGER.info("Received " + result);
+        LOGGER.info(new Supplier<String>() {
+        	@Override
+        	public String get() {
+        		return "Received " + result;
+        	}
+        });
         return result;
     }
 
@@ -124,9 +139,9 @@ public class SocketUtils {
      * @return the json object.
      * @throws IOException on failure.
      */
-    public static JsonObject receiveJsonObject(Socket sourceSocket) throws IOException {
+    public static JsonObject receiveJsonObject(final Socket sourceSocket) throws IOException {
         return new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+                .setDateFormat(DATE_FORMAT)
                 .create()
                 .fromJson(receiveJsonString(sourceSocket), JsonObject.class);
     }
@@ -138,9 +153,9 @@ public class SocketUtils {
      * @return the generic json object.
      * @throws IOException on failure.
      */
-    public static <T> T receiveJsonObject(Socket sourceSocket, Class<T> objectClass) throws IOException {
+    public static <T> T receiveJsonObject(final Socket sourceSocket, final Class<T> objectClass) throws IOException {
         return new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+                .setDateFormat(DATE_FORMAT)
                 .create()
                 .fromJson(receiveJsonString(sourceSocket), objectClass);
     }
@@ -152,9 +167,9 @@ public class SocketUtils {
      * @param fileName     the name and path of the file.
      * @throws IOException on failure.
      */
-    public static void receiveBytesAndWriteToFile(Socket sourceSocket, String fileName) throws IOException {
+    public static void receiveBytesAndWriteToFile(final Socket sourceSocket, final String fileName) throws IOException {
 
-        OutputStream out = new FileOutputStream(fileName);
+        final OutputStream out = new FileOutputStream(fileName);
 
         /* Get input and output stream */
         InputStream in = sourceSocket.getInputStream();
@@ -179,7 +194,7 @@ public class SocketUtils {
      * @param fileName     the name and path of the file.
      * @throws IOException on failure.
      */
-    public static void writeToFile(byte[] bytes, String fileName) throws IOException {
+    public static void writeToFile(final byte[] bytes,final String fileName) throws IOException {
         OutputStream out = new FileOutputStream(fileName);
         out.write(bytes, 0, bytes.length);
         out.flush();
@@ -192,11 +207,11 @@ public class SocketUtils {
      * @return the byte array
      * @throws IOException 
      */
-    public static byte[] readFileToBytes(String filePath) throws IOException{
-    	File file = new File(filePath);
-		FileInputStream fis = new FileInputStream(file);
-		byte[] result = new byte[(int) file.length()];
-		BufferedInputStream bis = new BufferedInputStream(fis);
+    public static byte[] readFileToBytes(final String filePath) throws IOException{
+    	final File file = new File(filePath);
+		final InputStream fis = Files.newInputStream(Paths.get(filePath));
+		final byte[] result = new byte[(int) file.length()];
+		final BufferedInputStream bis = new BufferedInputStream(fis);
 		bis.read(result, 0, result.length);
 		bis.close();
 		return result;
@@ -210,8 +225,8 @@ public class SocketUtils {
      * @return {@code true} iff the given buffer ends with the string defined as the
      * termination string of messages.
      */
-    protected static boolean checkMessageEnd(StringBuffer buffer) {
-        int start = buffer.length() - NetworkConstants.MESSAGE_TERMINATION_STRING.length();
+    protected static boolean checkMessageEnd(final StringBuffer buffer) {
+        final int start = buffer.length() - NetworkConstants.MESSAGE_TERMINATION_STRING.length();
         if (start < 0) {
             return false;
         } else {
@@ -225,8 +240,8 @@ public class SocketUtils {
      * @param msg the raw message.
      * @return the message payload.
      */
-    protected static String getJsonPayload(StringBuffer msg) {
-        int endLength = NetworkConstants.MESSAGE_TERMINATION_STRING.length();
+    protected static String getJsonPayload(final StringBuffer msg) {
+        final int endLength = NetworkConstants.MESSAGE_TERMINATION_STRING.length();
         return msg.substring(0, msg.length() - endLength);
     }
 }

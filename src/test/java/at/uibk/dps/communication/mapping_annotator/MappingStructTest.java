@@ -25,6 +25,19 @@ public class MappingStructTest {
 		MappingStruct tested2 = new MappingStruct(m);
 		assertEquals(tested1, tested2);
 	}
+	
+	/**
+	 * Test for the practical usage of the hash method
+	 */
+	@Test
+	public void testHash() {
+		Task t = new Task("t");
+		Resource res = new Resource("r");
+		Mapping<Task, Resource> m = new Mapping<Task, Resource>("m", t, res);
+		MappingStruct tested1 = new MappingStruct(m);
+		MappingStruct tested2 = new MappingStruct(m);
+		assertEquals(tested1.hashCode(), tested2.hashCode());
+	}
 
 	@Test
 	public void testGetMappingId() {

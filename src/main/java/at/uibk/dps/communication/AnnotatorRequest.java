@@ -1,7 +1,5 @@
 package at.uibk.dps.communication;
 
-import at.uibk.dps.communication.entity.AnnotatorRequestType;
-
 /**
  * This class is used to define the request which will be sent
  * from the scheduler to the mapping annotator module.
@@ -19,6 +17,15 @@ public class AnnotatorRequest {
      * The resource link of the cloud function.
      */
     private String functionLink;
+    
+    /**
+     * Contains all possible types for a
+     * annotator request.
+     */
+    public enum AnnotatorRequestType {
+        GET_AVG_EXEC_TIME
+    }
+    
 
     /** Constructors */
 
