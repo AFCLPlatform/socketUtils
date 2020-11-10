@@ -37,6 +37,11 @@ public class NetworkConstants {
 
     // response of the attribute service
     public static final String JSON_RESPONSE_ATTR_KEY = "queried attribute";
+    
+    
+    // Other constants
+    
+    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.S";
 	
     /**
      * Default constructor.
