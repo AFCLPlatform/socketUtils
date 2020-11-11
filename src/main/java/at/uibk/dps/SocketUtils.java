@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 
 import java.io.*;
 import java.net.InetAddress;
-import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -44,7 +43,7 @@ public final class SocketUtils {
 	 * Sends the given Json String to the given socket.
 	 *
 	 * @param outputStream the output stream to send to
-	 * @param jsonString        to send.
+	 * @param jsonString   to send.
 	 * @throws IOException on failure.
 	 */
 	public static void sendJsonString(final OutputStream outputStream, final String jsonString) throws IOException {
@@ -54,8 +53,7 @@ public final class SocketUtils {
 				return "Sending " + jsonString + NetworkConstants.MESSAGE_TERMINATION_STRING;
 			}
 		});
-		final OutputStreamWriter osw = new OutputStreamWriter(outputStream,
-				StandardCharsets.UTF_8);
+		final OutputStreamWriter osw = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
 		osw.write(jsonString + NetworkConstants.MESSAGE_TERMINATION_STRING, 0,
 				jsonString.length() + NetworkConstants.MESSAGE_TERMINATION_STRING.length());
 		osw.flush();
@@ -65,7 +63,7 @@ public final class SocketUtils {
 	 * Sends the given Json Object to the given socket.
 	 *
 	 * @param outputStream the output stream to send to
-	 * @param jsonObject        to convert to string and send to socket.
+	 * @param jsonObject   to convert to string and send to socket.
 	 * @throws IOException on failure.
 	 */
 	public static void sendJsonObject(final OutputStream outputStream, final JsonObject jsonObject) throws IOException {
@@ -77,7 +75,7 @@ public final class SocketUtils {
 	 * Sends the given generic Json Object to the given socket.
 	 *
 	 * @param outputStream the output stream to send to
-	 * @param jsonObject        to convert to string and send to socket.
+	 * @param jsonObject   to convert to string and send to socket.
 	 * @throws IOException on failure.
 	 */
 	public static <T> void sendJsonObject(final OutputStream outputStream, final T jsonObject) throws IOException {
@@ -89,7 +87,7 @@ public final class SocketUtils {
 	 * Sends the give byte[] to the given socket.
 	 *
 	 * @param outputStream the output stream to send to
-	 * @param bytes             to send.
+	 * @param bytes        to send.
 	 * @throws IOException on failure.
 	 */
 	public static void sendBytes(final OutputStream outputStream, final byte[] bytes) throws IOException {
@@ -142,7 +140,8 @@ public final class SocketUtils {
 	 * @return the generic json object.
 	 * @throws IOException on failure.
 	 */
-	public static <T> T receiveJsonObject(final InputStream inputStream, final Class<T> objectClass) throws IOException {
+	public static <T> T receiveJsonObject(final InputStream inputStream, final Class<T> objectClass)
+			throws IOException {
 		return new GsonBuilder().setDateFormat(NetworkConstants.DATE_FORMAT).create()
 				.fromJson(receiveJsonString(inputStream), objectClass);
 	}
@@ -150,29 +149,26 @@ public final class SocketUtils {
 	/**
 	 * Receives and stores a byte[] to a file.
 	 *
-	 * @param sourceSocket the socket to listen to.
-	 * @param fileName     the name and path of the file.
+	 * @param inputStream the input stream to listen to
+	 * @param fileName    the name and path of the file.
 	 * @throws IOException on failure.
 	 */
-	public static void receiveBytesAndWriteToFile(final Socket sourceSocket, final String fileName) throws IOException {
-
-		final OutputStream out = Files.newOutputStream(Paths.get(fileName));
-
-		/* Get input and output stream */
-		final InputStream inStream = sourceSocket.getInputStream();
-
-		/* Read bytes and write to output stream */
-		final byte[] bytes = new byte[16 * 1024];
-		assert inStream != null;
-		int count = inStream.read(bytes);
-		while (count >= 0) {
-			out.write(bytes, 0, count);
-			if (inStream.available() == 0) {
-				break;
+	public static void receiveBytesAndWriteToFile(final InputStream inputStream, final String fileName)
+			throws IOException {
+		try (final OutputStream out = Files.newOutputStream(Paths.get(fileName))) {
+			/* Read bytes and write to output stream */
+			final byte[] bytes = new byte[16 * 1024];
+			assert inputStream != null;
+			int count = inputStream.read(bytes);
+			while (count >= 0) {
+				out.write(bytes, 0, count);
+				if (inputStream.available() == 0) {
+					break;
+				}
+				count = inputStream.read(bytes);
 			}
-			count = inStream.read(bytes);
+			out.flush();
 		}
-		out.flush();
 	}
 
 	/**
@@ -183,12 +179,9 @@ public final class SocketUtils {
 	 * @throws IOException on failure.
 	 */
 	public static void writeToFile(final byte[] bytes, final String fileName) throws IOException {
-		final OutputStream out = new FileOutputStream(fileName);
-		try {
+		try (final OutputStream out = new FileOutputStream(fileName)) {
 			out.write(bytes, 0, bytes.length);
 			out.flush();
-		} finally {
-			out.close();
 		}
 	}
 
