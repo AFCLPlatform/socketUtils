@@ -43,18 +43,18 @@ public final class SocketUtils {
 	/**
 	 * Sends the given Json String to the given socket.
 	 *
-	 * @param destinationSocket to send string to.
+	 * @param outputStream the output stream to send to
 	 * @param jsonString        to send.
 	 * @throws IOException on failure.
 	 */
-	public static void sendJsonString(final Socket destinationSocket, final String jsonString) throws IOException {
+	public static void sendJsonString(final OutputStream outputStream, final String jsonString) throws IOException {
 		LOGGER.info(new Supplier<String>() {
 			@Override
 			public String get() {
 				return "Sending " + jsonString + NetworkConstants.MESSAGE_TERMINATION_STRING;
 			}
 		});
-		final OutputStreamWriter osw = new OutputStreamWriter(destinationSocket.getOutputStream(),
+		final OutputStreamWriter osw = new OutputStreamWriter(outputStream,
 				StandardCharsets.UTF_8);
 		osw.write(jsonString + NetworkConstants.MESSAGE_TERMINATION_STRING, 0,
 				jsonString.length() + NetworkConstants.MESSAGE_TERMINATION_STRING.length());
@@ -64,37 +64,37 @@ public final class SocketUtils {
 	/**
 	 * Sends the given Json Object to the given socket.
 	 *
-	 * @param destinationSocket to send string to.
+	 * @param outputStream the output stream to send to
 	 * @param jsonObject        to convert to string and send to socket.
 	 * @throws IOException on failure.
 	 */
-	public static void sendJsonObject(final Socket destinationSocket, final JsonObject jsonObject) throws IOException {
-		sendJsonString(destinationSocket,
+	public static void sendJsonObject(final OutputStream outputStream, final JsonObject jsonObject) throws IOException {
+		sendJsonString(outputStream,
 				new GsonBuilder().setDateFormat(NetworkConstants.DATE_FORMAT).create().toJson(jsonObject));
 	}
 
 	/**
 	 * Sends the given generic Json Object to the given socket.
 	 *
-	 * @param destinationSocket to send string to.
+	 * @param outputStream the output stream to send to
 	 * @param jsonObject        to convert to string and send to socket.
 	 * @throws IOException on failure.
 	 */
-	public static <T> void sendJsonObject(final Socket destinationSocket, final T jsonObject) throws IOException {
-		sendJsonString(destinationSocket,
+	public static <T> void sendJsonObject(final OutputStream outputStream, final T jsonObject) throws IOException {
+		sendJsonString(outputStream,
 				new GsonBuilder().setDateFormat(NetworkConstants.DATE_FORMAT).create().toJson(jsonObject));
 	}
 
 	/**
 	 * Sends the give byte[] to the given socket.
 	 *
-	 * @param destinationSocket to send byte[] to.
+	 * @param outputStream the output stream to send to
 	 * @param bytes             to send.
 	 * @throws IOException on failure.
 	 */
-	public static void sendBytes(final Socket destinationSocket, final byte[] bytes) throws IOException {
+	public static void sendBytes(final OutputStream outputStream, final byte[] bytes) throws IOException {
 		LOGGER.info("Sending byte[]");
-		final OutputStream out = destinationSocket.getOutputStream();
+		final OutputStream out = outputStream;
 		out.write(bytes);
 		out.flush();
 	}
@@ -106,8 +106,8 @@ public final class SocketUtils {
 	 * @return the json string.
 	 * @throws IOException on failure.
 	 */
-	public static String receiveJsonString(final Socket sourceSocket) throws IOException {
-		final InputStreamReader reader = new InputStreamReader(sourceSocket.getInputStream(), StandardCharsets.UTF_8);
+	public static String receiveJsonString(final InputStream inputStream) throws IOException {
+		final InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
 		int data = reader.read();
 		final StringBuffer buffer = new StringBuffer();
 		while (data != -1) {
@@ -126,25 +126,25 @@ public final class SocketUtils {
 	/**
 	 * Receives and returns a json object from the given socket.
 	 *
-	 * @param sourceSocket the socket to listen to.
+	 * @param inputStream the input stream to listen to
 	 * @return the json object.
 	 * @throws IOException on failure.
 	 */
-	public static JsonObject receiveJsonObject(final Socket sourceSocket) throws IOException {
+	public static JsonObject receiveJsonObject(final InputStream inputStream) throws IOException {
 		return new GsonBuilder().setDateFormat(NetworkConstants.DATE_FORMAT).create()
-				.fromJson(receiveJsonString(sourceSocket), JsonObject.class);
+				.fromJson(receiveJsonString(inputStream), JsonObject.class);
 	}
 
 	/**
 	 * Receives and returns a generic json object from the given socket.
 	 *
-	 * @param sourceSocket the socket to listen to.
+	 * @param inputStream the input stream to listen to
 	 * @return the generic json object.
 	 * @throws IOException on failure.
 	 */
-	public static <T> T receiveJsonObject(final Socket sourceSocket, final Class<T> objectClass) throws IOException {
+	public static <T> T receiveJsonObject(final InputStream inputStream, final Class<T> objectClass) throws IOException {
 		return new GsonBuilder().setDateFormat(NetworkConstants.DATE_FORMAT).create()
-				.fromJson(receiveJsonString(sourceSocket), objectClass);
+				.fromJson(receiveJsonString(inputStream), objectClass);
 	}
 
 	/**
@@ -156,7 +156,7 @@ public final class SocketUtils {
 	 */
 	public static void receiveBytesAndWriteToFile(final Socket sourceSocket, final String fileName) throws IOException {
 
-		final OutputStream out = new FileOutputStream(fileName);
+		final OutputStream out = Files.newOutputStream(Paths.get(fileName));
 
 		/* Get input and output stream */
 		final InputStream inStream = sourceSocket.getInputStream();
@@ -184,8 +184,12 @@ public final class SocketUtils {
 	 */
 	public static void writeToFile(final byte[] bytes, final String fileName) throws IOException {
 		final OutputStream out = new FileOutputStream(fileName);
-		out.write(bytes, 0, bytes.length);
-		out.flush();
+		try {
+			out.write(bytes, 0, bytes.length);
+			out.flush();
+		} finally {
+			out.close();
+		}
 	}
 
 	/**
@@ -197,11 +201,18 @@ public final class SocketUtils {
 	 */
 	public static byte[] readFileToBytes(final String filePath) throws IOException {
 		final File file = new File(filePath);
-		final InputStream fis = Files.newInputStream(Paths.get(filePath));
 		final byte[] result = new byte[(int) file.length()];
-		final BufferedInputStream bis = new BufferedInputStream(fis);
-		bis.read(result, 0, result.length);
-		bis.close();
+		final InputStream fis = Files.newInputStream(Paths.get(filePath));
+		try {
+			final BufferedInputStream bis = new BufferedInputStream(fis);
+			try {
+				bis.read(result, 0, result.length);
+			} finally {
+				bis.close();
+			}
+		} finally {
+			fis.close();
+		}
 		return result;
 	}
 
