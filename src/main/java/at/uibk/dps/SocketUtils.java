@@ -155,7 +155,7 @@ public final class SocketUtils {
 	 */
 	public static void receiveBytesAndWriteToFile(final InputStream inputStream, final String fileName)
 			throws IOException {
-		try (final OutputStream out = Files.newOutputStream(Paths.get(fileName))) {
+		try (OutputStream out = Files.newOutputStream(Paths.get(fileName))) {
 			/* Read bytes and write to output stream */
 			final byte[] bytes = new byte[16 * 1024];
 			assert inputStream != null;
@@ -179,7 +179,7 @@ public final class SocketUtils {
 	 * @throws IOException on failure.
 	 */
 	public static void writeToFile(final byte[] bytes, final String fileName) throws IOException {
-		try (final OutputStream out = new FileOutputStream(fileName)) {
+		try (OutputStream out = Files.newOutputStream(Paths.get(fileName))) {
 			out.write(bytes, 0, bytes.length);
 			out.flush();
 		}
@@ -195,16 +195,10 @@ public final class SocketUtils {
 	public static byte[] readFileToBytes(final String filePath) throws IOException {
 		final File file = new File(filePath);
 		final byte[] result = new byte[(int) file.length()];
-		final InputStream fis = Files.newInputStream(Paths.get(filePath));
-		try {
-			final BufferedInputStream bis = new BufferedInputStream(fis);
-			try {
+		try (InputStream fis = Files.newInputStream(Paths.get(filePath))) {
+			try (BufferedInputStream bis = new BufferedInputStream(fis)) {
 				bis.read(result, 0, result.length);
-			} finally {
-				bis.close();
 			}
-		} finally {
-			fis.close();
 		}
 		return result;
 	}
