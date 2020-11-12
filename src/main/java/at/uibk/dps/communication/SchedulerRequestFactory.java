@@ -32,7 +32,7 @@ public class SchedulerRequestFactory {
      */
     public static SchedulerRequest getSchedulerRequestFileContent(byte[] fileContent, byte[] schedulerConfigContent) {
         SchedulerRequest schedulerRequest = new SchedulerRequest(fileContent);
-        schedulerRequest.setSchedulerConfigContent(schedulerConfigContent);
+        schedulerRequest.setSchedulerConfig(schedulerConfigContent);
         return schedulerRequest;
     }
     

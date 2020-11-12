@@ -12,55 +12,55 @@ public class SchedulerRequest {
     /**
      * Content of the workflow yaml file.
      */
-    private byte[] workflowFileContent;
+    private byte[] workflowFile;
 
     /**
      * Content of the workflow input json file.
      */
-    private byte[] schedulerConfigContent;
+    private byte[] schedulerConfig;
 
     /**
      * Content of the workflow input json file.
      */
-    private byte[] workflowInputFileContent;
+    private byte[] workflowInput;
 
     /**
      * Default constructor.
      *
-     * @param workflowFileContent content of the workflow file.
+     * @param workflowFile content of the workflow file.
      */
-    public SchedulerRequest(byte[] workflowFileContent) {
-        this(workflowFileContent, null, null);
+    public SchedulerRequest(byte[] workflowFile) {
+        this(workflowFile, null, null);
     }
 
     /**
      * Constructor for scheduler request
      *
-     * @param workflowFileContent content of the workflow file.
-     * @param workflowInputFileContent content of the workflow input file.
-     * @param schedulerConfigContent content of the config file.
+     * @param workflowFile content of the workflow file.
+     * @param workflowInput content of the workflow input file.
+     * @param schedulerConfig content of the config file.
      */
-    public SchedulerRequest(byte[] workflowFileContent, byte[] workflowInputFileContent, byte[] schedulerConfigContent){
-        this.workflowFileContent = workflowFileContent;
-        this.workflowInputFileContent = workflowInputFileContent;
-        this.schedulerConfigContent = schedulerConfigContent;
+    public SchedulerRequest(final byte[] workflowFile, final byte[] workflowInput, final byte[] schedulerConfig){
+        this.workflowFile = workflowFile.clone();
+        this.workflowInput = workflowInput.clone();
+        this.schedulerConfig = schedulerConfig.clone();
     }
 
     /** Getter and Setter */
 
-    public byte[] getWorkflowFileContent() {
-        return workflowFileContent;
+    public byte[] getWorkflowFile() {
+        return workflowFile.clone();
     }
 
-    public void setWorkflowFileContent(byte[] workflowFileContent) {
-        this.workflowFileContent = workflowFileContent;
+    public void setWorkflowFile(byte[] workflowFile) {
+        this.workflowFile = workflowFile.clone();
     }
 
-    public byte[] getWorkflowInputFileContent() { return workflowInputFileContent; }
+    public byte[] getWorkflowInput() { return workflowInput.clone(); }
 
-    public void setWorkflowInputFileContent(byte[] workflowInputFileContent) { this.workflowInputFileContent = workflowInputFileContent; }
+    public void setWorkflowInput(final byte[] workflowInput) { this.workflowInput = workflowInput.clone(); }
 
-    public byte[] getSchedulerConfigContent() { return schedulerConfigContent; }
+    public byte[] getSchedulerConfig() { return schedulerConfig.clone(); }
 
-    public void setSchedulerConfigContent(byte[] schedulerConfigContent) { this.schedulerConfigContent = schedulerConfigContent; }
+    public void setSchedulerConfig(final byte[] schedulerConfig) { this.schedulerConfig = schedulerConfig.clone();}
 }

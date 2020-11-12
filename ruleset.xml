@@ -59,9 +59,16 @@
 	
 	<!-- Maximum number of methods -->
 	<rule ref="category/java/design.xml/TooManyMethods">
-    <properties>
-        <property name="maxmethods" value="15" />
-    </properties>
-</rule>
+	    <properties>
+	        <property name="maxmethods" value="15" />
+	    </properties>
+	</rule>
+	
+	<!-- Maximum length of variable names -->
+	<rule ref="category/java/codestyle.xml/LongVariable">
+	    <properties>
+	        <property name="minimum" value="20" />
+	    </properties>
+	</rule>
 
 </ruleset>
