@@ -29,7 +29,7 @@ public class SchedulerRequest {
      *
      * @param workflowFile content of the workflow file.
      */
-    public SchedulerRequest(byte[] workflowFile) {
+    public SchedulerRequest(final byte[] workflowFile) {
         this(workflowFile, null, null);
     }
 
@@ -52,7 +52,7 @@ public class SchedulerRequest {
         return workflowFile.clone();
     }
 
-    public void setWorkflowFile(byte[] workflowFile) {
+    public void setWorkflowFile(final byte[] workflowFile) {
         this.workflowFile = workflowFile.clone();
     }
 
