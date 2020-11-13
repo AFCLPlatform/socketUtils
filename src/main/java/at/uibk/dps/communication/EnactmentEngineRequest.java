@@ -48,11 +48,11 @@ public class EnactmentEngineRequest {
 	/** Getters */
 	
 	public byte[] getWorkflowFileContent() {
-		return workflowFileContent;
+		return workflowFileContent.clone();
 	}
 
 	public byte[] getWorkflowInputFileContent() {
-		return workflowInputFileContent;
+		return workflowInputFileContent.clone();
 	}
 
 	public boolean isLogResults() {
