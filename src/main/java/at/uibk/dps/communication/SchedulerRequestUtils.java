@@ -13,7 +13,7 @@ import java.nio.file.Paths;
  *
  * @author stefanpedratscher
  */
-public class SchedulerRequestUtils {
+public final class SchedulerRequestUtils {
 
 	/**
 	 * Default constructor.

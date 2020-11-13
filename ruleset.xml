@@ -67,7 +67,15 @@
 	<!-- Maximum length of variable names -->
 	<rule ref="category/java/codestyle.xml/LongVariable">
 	    <properties>
-	        <property name="minimum" value="20" />
+	        <property name="minimum" value="30" />
+	    </properties>
+	</rule>
+	
+	<!-- Maximum dimensions of non-header comments. -->
+	<rule ref="category/java/documentation.xml/CommentSize">
+	    <properties>
+	        <property name="maxLines" value="20" />
+	        <property name="maxLineLength" value="80" />
 	    </properties>
 	</rule>
 

@@ -1,10 +1,10 @@
 package at.uibk.dps.communication.mapping_annotator;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import at.uibk.dps.communication.entity.ConfigurationAttribute;
 import net.sf.opendse.model.Mapping;
@@ -12,14 +12,14 @@ import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;
 
 /**
- * The {@link MappingAnnotatorRequestFactoryUtils} is used to generate the
+ * The {@link MappingAnnotatorRequestUtils} is used to generate the
  * {@link MappingAnnotatorAttributeRequest} objects used for mapping queries to
  * the Attribute Annotator module.
  * 
  * @author Fedor Smirnov
  *
  */
-public class MappingAnnotatorRequestFactoryUtils {
+public class MappingAnnotatorRequestUtils {
 
 	/**
 	 * 
@@ -27,11 +27,22 @@ public class MappingAnnotatorRequestFactoryUtils {
 	 *
 	 */
 
+	/**
+	 * The type of the regressor used for the exec time prediction.
+	 * 
+	 * @author Fedor Smirnov
+	 */
 	public enum RegressorType {
 		DECISION_TREE, KNN, RANDOM_FOREST
 	}
-	
-	public enum CalculationTypeExecTime{
+
+	/**
+	 * The way of calculating the time (just the start time vs. sum of start and
+	 * execution time).
+	 * 
+	 * @author Fedor Smirnov
+	 */
+	public enum CalculationTypeExecTime {
 		START_TIME, SUM
 	}
 
@@ -41,14 +52,20 @@ public class MappingAnnotatorRequestFactoryUtils {
 	public static final String ATTR_NAME_CALCULATION_TYPE_EXEC_TIME = "calculation type";
 
 	/**
+	 * Default constructor.
+	 */
+	private MappingAnnotatorRequestUtils() {
+	}
+
+	/**
 	 * Returns the request object to request the execution time of the given
 	 * mapping.
 	 * 
-	 * @param m the given mapping
+	 * @param mapping the given mapping
 	 * @return the request object to request the execution time of the given mapping
 	 */
-	public static MappingAnnotatorAttributeRequest generateMappingExecTimeRequest(Mapping<Task, Resource> m) {
-		return new MappingAnnotatorAttributeRequest(MappingAnnotatorRequestType.MAPPING_EXEC_TIME_REQUEST, m);
+	public static MappingAnnotatorAttributeRequest generateMappingExecTimeRequest(final Mapping<Task, Resource> mapping) {
+		return new MappingAnnotatorAttributeRequest(MappingAnnotatorRequestType.MAPPING_EXEC_TIME_REQUEST, mapping);
 	}
 
 	/**
@@ -65,15 +82,15 @@ public class MappingAnnotatorRequestFactoryUtils {
 	 * @param mappings     the mappings which will be requested
 	 * @return the request object for the init
 	 */
-	public static MappingAnnotatorInitRequest generateMappingInitRequest(Set<MappingAnnotatorRequestType> requestTypes,
-			Set<Mapping<Task, Resource>> mappings, Set<ConfigurationAttribute> configAttributes) {
-		List<MappingAnnotatorRequestType> typeList = new ArrayList<>(requestTypes);
-		List<MappingStruct> mappingList = new ArrayList<>();
+	public static MappingAnnotatorInitRequest generateMappingInitRequest(final Set<MappingAnnotatorRequestType> requestTypes,
+			final Set<Mapping<Task, Resource>> mappings, final Set<ConfigurationAttribute> configAttributes) {
+		final List<MappingAnnotatorRequestType> typeList = new ArrayList<>(requestTypes);
+		final  List<MappingStruct> mappingList = new ArrayList<>();
 		for (Mapping<Task, Resource> m : mappings) {
 			mappingList.add(new MappingStruct(m));
 		}
-		Map<String, String> configMap = new HashMap<>();
-		for (ConfigurationAttribute confAttr : configAttributes) {
+		final Map<String, String> configMap = new ConcurrentHashMap<>();
+		for (final ConfigurationAttribute confAttr : configAttributes) {
 			configMap.put(confAttr.getKey(), confAttr.getValue());
 		}
 		return new MappingAnnotatorInitRequest(MappingAnnotatorRequestType.INIT_REQUEST, typeList, mappingList,
