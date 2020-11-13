@@ -19,7 +19,7 @@ import net.sf.opendse.model.Task;
  * @author Fedor Smirnov
  *
  */
-public class MappingAnnotatorRequestUtils {
+public final class MappingAnnotatorRequestUtils {
 
 	/**
 	 * 
