@@ -10,7 +10,7 @@ import at.uibk.dps.SocketUtils;
  *
  * @author stefanpedratscher
  */
-public class EnactmentEngineRequestUtils {
+public final class EnactmentEngineRequestUtils {
 
 	/**
 	 * Method used as static method container

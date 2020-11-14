@@ -13,12 +13,12 @@ public class SelectorRequest {
     /**
      * Function type.
      */
-    private String functionType;
+    protected final String functionType;
 
     /**
      * Request type for a resource.
      */
-    private ResourceRequestType requestType;
+    protected final ResourceRequestType requestType;
 
     /**
      * Default constructor.
@@ -26,7 +26,7 @@ public class SelectorRequest {
      * @param functionType of the function.
      * @param requestType of the request.
      */
-    SelectorRequest(String functionType, ResourceRequestType requestType) {
+    protected SelectorRequest(final String functionType, final ResourceRequestType requestType) {
         this.functionType = functionType;
         this.requestType = requestType;
     }

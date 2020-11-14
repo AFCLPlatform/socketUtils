@@ -6,41 +6,42 @@ import at.uibk.dps.communication.entity.ResourceRequestType;
 import java.util.List;
 
 /**
- * This class is used to define the request which will be sent from
- * the implementation selector to the resource manager module.
+ * This class is used to define the request which will be sent from the
+ * implementation selector to the resource manager module.
  *
  * @author stefanpedratscher
  */
 public class ResourceManagerRequest {
 
-    /**
-     * The request type.
-     */
-    private ResourceRequestType requestType;
+	/**
+	 * The request type.
+	 */
+	protected final ResourceRequestType requestType;
 
-    /**
-     * All possible function links which will be filtered.
-     */
-    private List<FunctionDetails> possibleFunctionLinks;
+	/**
+	 * All possible function links which will be filtered.
+	 */
+	protected final List<FunctionDetails> possibleFunctionLinks;
 
-    /**
-     * Constructor for a request to the resource manager module.
-     *
-     * @param requestType of the request.
-     * @param possibleFunctionLinks all possible function links.
-     */
-    ResourceManagerRequest(ResourceRequestType requestType, List<FunctionDetails> possibleFunctionLinks) {
-        this.requestType = requestType;
-        this.possibleFunctionLinks = possibleFunctionLinks;
-    }
+	/**
+	 * Constructor for a request to the resource manager module.
+	 *
+	 * @param requestType           of the request.
+	 * @param possibleFunctionLinks all possible function links.
+	 */
+	protected ResourceManagerRequest(final ResourceRequestType requestType,
+			final List<FunctionDetails> possibleFunctionLinks) {
+		this.requestType = requestType;
+		this.possibleFunctionLinks = possibleFunctionLinks;
+	}
 
-    /** Getter and Setter */
+	/** Getter and Setter */
 
-    public ResourceRequestType getRequestType() {
-        return requestType;
-    }
+	public ResourceRequestType getRequestType() {
+		return requestType;
+	}
 
-    public List<FunctionDetails> getPossibleFunctionLinks() {
-        return possibleFunctionLinks;
-    }
+	public List<FunctionDetails> getPossibleFunctionLinks() {
+		return possibleFunctionLinks;
+	}
 }
