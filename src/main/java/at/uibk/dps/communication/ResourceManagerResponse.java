@@ -14,11 +14,6 @@ import java.util.List;
 public class ResourceManagerResponse {
 
     /**
-     * Default constructor.
-     */
-    public ResourceManagerResponse(){}
-
-    /**
      * status of the response.
      */
     private Status status;
@@ -27,7 +22,7 @@ public class ResourceManagerResponse {
      * Filtered function links after resource manager
      * applied the decision.
      */
-    private List<FunctionDetails> filteredFunctionLinks;
+    protected final List<FunctionDetails> filteredFunctionLinks;
 
     /**
      * Default constructor for resource manager response.
@@ -35,7 +30,7 @@ public class ResourceManagerResponse {
      * @param filteredFunctionLinks after resource manager
      *                              applied it's decision
      */
-    public ResourceManagerResponse(List<FunctionDetails> filteredFunctionLinks) {
+    public ResourceManagerResponse(final List<FunctionDetails> filteredFunctionLinks) {
         this.filteredFunctionLinks = filteredFunctionLinks;
     }
 
@@ -43,9 +38,5 @@ public class ResourceManagerResponse {
 
     public List<FunctionDetails> getFilteredFunctionLinks() {
         return filteredFunctionLinks;
-    }
-
-    public void setFilteredFunctionLinks(List<FunctionDetails> filteredFunctionLinks) {
-        this.filteredFunctionLinks = filteredFunctionLinks;
     }
 }

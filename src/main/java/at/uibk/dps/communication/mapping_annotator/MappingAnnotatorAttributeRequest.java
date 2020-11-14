@@ -11,18 +11,13 @@ import net.sf.opendse.model.Task;
  * 
  * @author Fedor Smirnov
  */
-public class MappingAnnotatorAttributeRequest {
+public class MappingAnnotatorAttributeRequest extends MappingAnnotatorRequest{
 
-	protected final MappingAnnotatorRequestType requestType;
 	protected final MappingStruct mapping;
 
-	MappingAnnotatorAttributeRequest(MappingAnnotatorRequestType requestType, Mapping<Task, Resource> m) {
-		this.requestType = requestType;
+	MappingAnnotatorAttributeRequest(RequestType requestType, Mapping<Task, Resource> m) {
+		super(requestType);
 		this.mapping = new MappingStruct(m);
-	}
-
-	public MappingAnnotatorRequestType getRequestType() {
-		return requestType;
 	}
 
 	public MappingStruct getMapping() {

@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import at.uibk.dps.communication.entity.ConfigurationAttribute;
+import at.uibk.dps.communication.mapping_annotator.MappingAnnotatorRequest.RequestType;
 import net.sf.opendse.model.Mapping;
 import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;
@@ -65,7 +66,7 @@ public final class MappingAnnotatorRequestUtils {
 	 * @return the request object to request the execution time of the given mapping
 	 */
 	public static MappingAnnotatorAttributeRequest generateMappingExecTimeRequest(final Mapping<Task, Resource> mapping) {
-		return new MappingAnnotatorAttributeRequest(MappingAnnotatorRequestType.MAPPING_EXEC_TIME_REQUEST, mapping);
+		return new MappingAnnotatorAttributeRequest(RequestType.MAPPING_EXEC_TIME_REQUEST, mapping);
 	}
 
 	/**
@@ -82,9 +83,9 @@ public final class MappingAnnotatorRequestUtils {
 	 * @param mappings     the mappings which will be requested
 	 * @return the request object for the init
 	 */
-	public static MappingAnnotatorInitRequest generateMappingInitRequest(final Set<MappingAnnotatorRequestType> requestTypes,
+	public static MappingAnnotatorInitRequest generateMappingInitRequest(final Set<RequestType> requestTypes,
 			final Set<Mapping<Task, Resource>> mappings, final Set<ConfigurationAttribute> configAttributes) {
-		final List<MappingAnnotatorRequestType> typeList = new ArrayList<>(requestTypes);
+		final List<RequestType> typeList = new ArrayList<>(requestTypes);
 		final  List<MappingStruct> mappingList = new ArrayList<>();
 		for (Mapping<Task, Resource> m : mappings) {
 			mappingList.add(new MappingStruct(m));
@@ -93,7 +94,7 @@ public final class MappingAnnotatorRequestUtils {
 		for (final ConfigurationAttribute confAttr : configAttributes) {
 			configMap.put(confAttr.getKey(), confAttr.getValue());
 		}
-		return new MappingAnnotatorInitRequest(MappingAnnotatorRequestType.INIT_REQUEST, typeList, mappingList,
+		return new MappingAnnotatorInitRequest(typeList, mappingList,
 				configMap);
 	}
 }

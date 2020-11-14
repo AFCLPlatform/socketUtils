@@ -9,18 +9,25 @@ package at.uibk.dps.communication.mapping_annotator;
  */
 public class MappingAnnotatorResponse {
 
-	protected final double requestedValue;
+	protected final double attribute;
 	protected final boolean success;
-	protected final String excMessage;
+	protected final String message;
 
-	public MappingAnnotatorResponse(double attribute, boolean success, String message) {
-		this.requestedValue = attribute;
+	/**
+	 * Default constructor
+	 * 
+	 * @param attribute the attribute which was requested
+	 * @param success   true iff exchange successful
+	 * @param message   optional message string
+	 */
+	public MappingAnnotatorResponse(final double attribute, final boolean success, final String message) {
+		this.attribute = attribute;
 		this.success = success;
-		this.excMessage = message;
+		this.message = message;
 	}
 
 	public double getAttribute() {
-		return requestedValue;
+		return attribute;
 	}
 
 	public boolean isSuccess() {
@@ -28,6 +35,6 @@ public class MappingAnnotatorResponse {
 	}
 
 	public String getMessage() {
-		return excMessage;
+		return message;
 	}
 }

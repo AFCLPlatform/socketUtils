@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import at.uibk.dps.communication.mapping_annotator.MappingAnnotatorRequest.RequestType;
 import net.sf.opendse.model.Mapping;
 import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;
@@ -17,7 +18,7 @@ public class MappingAnnotatorAttributeRequestTest {
 		Task t = new Task("t");
 		Resource r = new Resource("r");
 		Mapping<Task, Resource> m = new Mapping<Task, Resource>("m", t, r);
-		MappingAnnotatorRequestType typeMock = mock(MappingAnnotatorRequestType.class);
+		RequestType typeMock = mock(RequestType.class);
 		MappingAnnotatorAttributeRequest tested = new MappingAnnotatorAttributeRequest(typeMock, m);
 		assertEquals(typeMock, tested.getRequestType());
 	}
@@ -27,7 +28,7 @@ public class MappingAnnotatorAttributeRequestTest {
 		Task t = new Task("t");
 		Resource r = new Resource("r");
 		Mapping<Task, Resource> m = new Mapping<Task, Resource>("m", t, r);
-		MappingAnnotatorRequestType typeMock = mock(MappingAnnotatorRequestType.class);
+		RequestType typeMock = mock(RequestType.class);
 		MappingAnnotatorAttributeRequest tested = new MappingAnnotatorAttributeRequest(typeMock, m);
 		assertEquals(new MappingStruct(m), tested.getMapping());
 	}

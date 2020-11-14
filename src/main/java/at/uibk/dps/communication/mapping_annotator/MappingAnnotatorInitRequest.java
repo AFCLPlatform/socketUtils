@@ -8,24 +8,32 @@ import java.util.Map;
  * MappingAnnotator about the resource links relevant for the upcoming
  * orchestration, as well as about the request types that are expected to occur
  * therein.
+ * 
+ * @author Fedor Smirnov
  */
-public class MappingAnnotatorInitRequest {
+public class MappingAnnotatorInitRequest extends MappingAnnotatorRequest{
 
-	protected final MappingAnnotatorRequestType requestType;
-	protected final List<MappingAnnotatorRequestType> requestTypes;
+	protected final List<RequestType> requestTypes;
 	protected final List<MappingStruct> mappings;
 	protected final Map<String, String> configurationAttributes;
 
-	protected MappingAnnotatorInitRequest(MappingAnnotatorRequestType requestType,
-			List<MappingAnnotatorRequestType> requestTypes, List<MappingStruct> mappings,
-			Map<String, String> configurationAttributes) {
-		this.requestType = requestType;
+	/**
+	 * Default constructor
+	 * 
+	 * @param requestTypes            the types of requests that the annotator shall
+	 *                                expect
+	 * @param mappings                the mappings that the requests will relate to
+	 * @param configurationAttributes additional config attributes
+	 */
+	protected MappingAnnotatorInitRequest(final List<RequestType> requestTypes, final List<MappingStruct> mappings,
+			final Map<String, String> configurationAttributes) {
+		super(RequestType.INIT_REQUEST);
 		this.requestTypes = requestTypes;
 		this.mappings = mappings;
 		this.configurationAttributes = configurationAttributes;
 	}
 
-	public List<MappingAnnotatorRequestType> getRequestTypes() {
+	public List<RequestType> getRequestTypes() {
 		return requestTypes;
 	}
 
@@ -35,5 +43,9 @@ public class MappingAnnotatorInitRequest {
 
 	public Map<String, String> getConfigurationAttributes() {
 		return configurationAttributes;
+	}
+
+	public RequestType getRequestType() {
+		return requestType;
 	}
 }
