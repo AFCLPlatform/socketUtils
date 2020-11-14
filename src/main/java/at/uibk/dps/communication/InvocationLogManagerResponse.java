@@ -37,11 +37,11 @@ public class InvocationLogManagerResponse {
         this.executionId = executionId;
     }
 
-    public InvocationLogManagerResponse(BigDecimal avgExecutionTime) {
+    public InvocationLogManagerResponse(final BigDecimal avgExecutionTime) {
         this.avgExecutionTime = avgExecutionTime;
     }
 
-    public InvocationLogManagerResponse(List<Invocation> invocations) {
+    public InvocationLogManagerResponse(final List<Invocation> invocations) {
         this.invocations = invocations;
     }
 
@@ -51,7 +51,7 @@ public class InvocationLogManagerResponse {
         return executionId;
     }
 
-    public void setExecutionId(int executionId) {
+    public void setExecutionId(final int executionId) {
         this.executionId = executionId;
     }
 
@@ -59,7 +59,7 @@ public class InvocationLogManagerResponse {
         return avgExecutionTime;
     }
 
-    public void setAvgExecutionTime(BigDecimal avgExecutionTime) {
+    public void setAvgExecutionTime(final BigDecimal avgExecutionTime) {
         this.avgExecutionTime = avgExecutionTime;
     }
 
@@ -67,7 +67,7 @@ public class InvocationLogManagerResponse {
         return invocations;
     }
 
-    public void setInvocations(List<Invocation> invocations) {
+    public void setInvocations(final List<Invocation> invocations) {
         this.invocations = invocations;
     }
 }

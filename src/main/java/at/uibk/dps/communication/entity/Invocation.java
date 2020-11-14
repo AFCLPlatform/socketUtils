@@ -67,9 +67,9 @@ public class Invocation {
      * @param errorMessage  if an error occured.
      * @param executionId   identifier to which the cloud function belongs.
      */
-    public Invocation(String functionLink, String provider, String region,
-                      Timestamp invokeTime, Timestamp returnTime, long executionTime,
-                      String status, String errorMessage, int executionId) {
+    public Invocation(final String functionLink, final String provider, final String region,
+    		final Timestamp invokeTime, final Timestamp returnTime, final long executionTime,
+    		final String status, final String errorMessage, final int executionId) {
         this.functionLink = functionLink;
         this.provider = provider;
         this.region = region;
@@ -89,7 +89,7 @@ public class Invocation {
         return functionLink;
     }
 
-    public void setFunctionLink(String functionLink) {
+    public void setFunctionLink(final String functionLink) {
         this.functionLink = functionLink;
     }
 
@@ -97,7 +97,7 @@ public class Invocation {
         return provider;
     }
 
-    public void setProvider(String provider) {
+    public void setProvider(final String provider) {
         this.provider = provider;
     }
 
@@ -105,7 +105,7 @@ public class Invocation {
         return region;
     }
 
-    public void setRegion(String region) {
+    public void setRegion(final String region) {
         this.region = region;
     }
 
@@ -113,7 +113,7 @@ public class Invocation {
         return invokeTime;
     }
 
-    public void setInvokeTime(Timestamp invokeTime) {
+    public void setInvokeTime(final Timestamp invokeTime) {
         this.invokeTime = invokeTime;
     }
 
@@ -121,7 +121,7 @@ public class Invocation {
         return returnTime;
     }
 
-    public void setReturnTime(Timestamp returnTime) {
+    public void setReturnTime(final Timestamp returnTime) {
         this.returnTime = returnTime;
     }
 
@@ -129,7 +129,7 @@ public class Invocation {
         return executionTime;
     }
 
-    public void setExecutionTime(long executionTime) {
+    public void setExecutionTime(final long executionTime) {
         this.executionTime = executionTime;
     }
 
@@ -137,7 +137,7 @@ public class Invocation {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(final String status) {
         this.status = status;
     }
 
@@ -145,7 +145,7 @@ public class Invocation {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage) {
+    public void setErrorMessage(final String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
@@ -153,7 +153,7 @@ public class Invocation {
         return executionId;
     }
 
-    public void setExecutionId(int executionId) {
+    public void setExecutionId(final int executionId) {
         this.executionId = executionId;
     }
 }

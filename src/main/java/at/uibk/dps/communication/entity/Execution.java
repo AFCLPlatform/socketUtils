@@ -49,8 +49,8 @@ public class Execution {
      * @param portalStart    start time of the portal.
      * @param portalEnd      end time of the portal.
      */
-    public Execution(Timestamp eeStart, Timestamp eeEnd, Timestamp schedulerStart,
-                     Timestamp schedulerEnd, Timestamp portalStart, Timestamp portalEnd) {
+    public Execution(final Timestamp eeStart, final Timestamp eeEnd, final Timestamp schedulerStart,
+                     final Timestamp schedulerEnd, final Timestamp portalStart, final Timestamp portalEnd) {
         this.eeStart = eeStart;
         this.eeEnd = eeEnd;
         this.schedulerStart = schedulerStart;
@@ -67,7 +67,7 @@ public class Execution {
         return eeStart;
     }
 
-    public void setEeStart(Timestamp eeStart) {
+    public void setEeStart(final Timestamp eeStart) {
         this.eeStart = eeStart;
     }
 
@@ -75,7 +75,7 @@ public class Execution {
         return eeEnd;
     }
 
-    public void setEeEnd(Timestamp eeEnd) {
+    public void setEeEnd(final Timestamp eeEnd) {
         this.eeEnd = eeEnd;
     }
 
@@ -83,7 +83,7 @@ public class Execution {
         return schedulerStart;
     }
 
-    public void setSchedulerStart(Timestamp schedulerStart) {
+    public void setSchedulerStart(final Timestamp schedulerStart) {
         this.schedulerStart = schedulerStart;
     }
 
@@ -91,7 +91,7 @@ public class Execution {
         return schedulerEnd;
     }
 
-    public void setSchedulerEnd(Timestamp schedulerEnd) {
+    public void setSchedulerEnd(final Timestamp schedulerEnd) {
         this.schedulerEnd = schedulerEnd;
     }
 
@@ -99,7 +99,7 @@ public class Execution {
         return portalStart;
     }
 
-    public void setPortalStart(Timestamp portalStart) {
+    public void setPortalStart(final Timestamp portalStart) {
         this.portalStart = portalStart;
     }
 
@@ -107,7 +107,7 @@ public class Execution {
         return portalEnd;
     }
 
-    public void setPortalEnd(Timestamp portalEnd) {
+    public void setPortalEnd(final Timestamp portalEnd) {
         this.portalEnd = portalEnd;
     }
 }
