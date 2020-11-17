@@ -1,6 +1,5 @@
 package at.uibk.dps.communication;
 
-
 import at.uibk.dps.communication.entity.Invocation;
 
 import java.math.BigDecimal;
@@ -14,60 +13,37 @@ import java.util.List;
  */
 public class InvocationLogManagerResponse {
 
-    /**
-     * Execution identifier.
-     */
-    private int executionId;
+	/**
+	 * Execution identifier.
+	 */
+	protected final int executionId;
 
-    /**
-     * Average execution time.
-     */
-    private BigDecimal avgExecutionTime;
+	/**
+	 * Average execution time.
+	 */
+	protected final BigDecimal avgExecutionTime;
 
-    /**
-     * Invocations.
-     */
-    private List<Invocation> invocations;
+	/**
+	 * Invocations.
+	 */
+	protected final List<Invocation> invocations;
 
-    /** Constructors */
+	public InvocationLogManagerResponse(final int executionId, final BigDecimal avgExecutionTime,
+			final List<Invocation> invocations) {
+		this.executionId = executionId;
+		this.avgExecutionTime = avgExecutionTime;
+		this.invocations = invocations;
+	}
 
-    public InvocationLogManagerResponse() { }
+	public int getExecutionId() {
+		return executionId;
+	}
 
-    public InvocationLogManagerResponse(int executionId) {
-        this.executionId = executionId;
-    }
+	public BigDecimal getAvgExecutionTime() {
+		return avgExecutionTime;
+	}
 
-    public InvocationLogManagerResponse(final BigDecimal avgExecutionTime) {
-        this.avgExecutionTime = avgExecutionTime;
-    }
-
-    public InvocationLogManagerResponse(final List<Invocation> invocations) {
-        this.invocations = invocations;
-    }
-
-    /** Getter and Setter */
-
-    public int getExecutionId() {
-        return executionId;
-    }
-
-    public void setExecutionId(final int executionId) {
-        this.executionId = executionId;
-    }
-
-    public BigDecimal getAvgExecutionTime() {
-        return avgExecutionTime;
-    }
-
-    public void setAvgExecutionTime(final BigDecimal avgExecutionTime) {
-        this.avgExecutionTime = avgExecutionTime;
-    }
-
-    public List<Invocation> getInvocations() {
-        return invocations;
-    }
-
-    public void setInvocations(final List<Invocation> invocations) {
-        this.invocations = invocations;
-    }
+	public List<Invocation> getInvocations() {
+		return invocations;
+	}
 }
