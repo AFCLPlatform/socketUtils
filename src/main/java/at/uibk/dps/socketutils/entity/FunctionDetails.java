@@ -7,57 +7,45 @@ package at.uibk.dps.socketutils.entity;
  */
 public class FunctionDetails {
 
-    /**
-     * Programming language in which the function is written.
-     */
-    private String language;
+	/**
+	 * Programming language in which the function is written.
+	 */
+	protected final String language;
 
-    /**
-     * Resource link of the function.
-     */
-    private String functionLink;
+	/**
+	 * Resource link of the function.
+	 */
+	protected final String functionLink;
 
-    /**
-     * If there are any free invocations.
-     */
-    private boolean freeInvocations;
+	/**
+	 * If there are any free invocations.
+	 */
+	protected final boolean freeInvocations;
 
-    /**
-     * Default constructor for function details.
-     *
-     * @param language programming language of the function.
-     * @param functionLink resource link of the function.
-     * @param freeInvocations if there are free invocations.
-     */
-    public FunctionDetails(String language, String functionLink, boolean freeInvocations) {
-        this.language = language;
-        this.functionLink = functionLink;
-        this.freeInvocations = freeInvocations;
-    }
+	/**
+	 * Default constructor for function details.
+	 *
+	 * @param language        programming language of the function.
+	 * @param functionLink    resource link of the function.
+	 * @param freeInvocations if there are free invocations.
+	 */
+	public FunctionDetails(final String language, final String functionLink, final boolean freeInvocations) {
+		this.language = language;
+		this.functionLink = functionLink;
+		this.freeInvocations = freeInvocations;
+	}
 
-    /** Getter and Setter */
+	/** Getter and Setter */
 
-    public String getLanguage() {
-        return language;
-    }
+	public String getLanguage() {
+		return language;
+	}
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
+	public String getFunctionLink() {
+		return functionLink;
+	}
 
-    public String getFunctionLink() {
-        return functionLink;
-    }
-
-    public void setFunctionLink(String functionLink) {
-        this.functionLink = functionLink;
-    }
-
-    public boolean isFreeInvocations() {
-        return freeInvocations;
-    }
-
-    public void setFreeInvocations(boolean freeInvocations) {
-        this.freeInvocations = freeInvocations;
-    }
+	public boolean isFreeInvocations() {
+		return freeInvocations;
+	}
 }

@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import at.uibk.dps.socketutils.mapping_annotator.MappingStruct;
 import net.sf.opendse.model.Mapping;
 import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;

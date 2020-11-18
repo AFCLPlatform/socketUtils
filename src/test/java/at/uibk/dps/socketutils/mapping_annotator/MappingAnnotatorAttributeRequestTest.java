@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import at.uibk.dps.socketutils.mapping_annotator.MappingAnnotatorAttributeRequest;
-import at.uibk.dps.socketutils.mapping_annotator.MappingStruct;
 import at.uibk.dps.socketutils.mapping_annotator.MappingAnnotatorRequest.RequestType;
 import net.sf.opendse.model.Mapping;
 import net.sf.opendse.model.Resource;

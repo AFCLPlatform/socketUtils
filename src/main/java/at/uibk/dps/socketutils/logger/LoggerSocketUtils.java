@@ -1,4 +1,7 @@
-package at.uibk.dps.socketutils.logging;
+package at.uibk.dps.socketutils.logger;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 import at.uibk.dps.socketutils.entity.Execution;
 import at.uibk.dps.socketutils.entity.Invocation;
@@ -9,12 +12,12 @@ import at.uibk.dps.socketutils.entity.Invocation;
  * @author Fedor Smirnov
  *
  */
-public final class LoggerRequestUtils {
+public final class LoggerSocketUtils {
 
 	/**
 	 * Static container.
 	 */
-	private LoggerRequestUtils() {
+	private LoggerSocketUtils() {
 	}
 
 	/**
@@ -52,5 +55,10 @@ public final class LoggerRequestUtils {
 
 	public static LoggerAvgFunctionExecTimeRequest generateAvgFunctionExecTimeRequest(final String functionLink) {
 		return new LoggerAvgFunctionExecTimeRequest(functionLink);
+	}
+
+	public static LoggerResponse generateResponse(final int executionId, final BigDecimal avgExecutionTime,
+			final List<Invocation> invocations) {
+		return new LoggerResponse(executionId, avgExecutionTime, invocations);
 	}
 }

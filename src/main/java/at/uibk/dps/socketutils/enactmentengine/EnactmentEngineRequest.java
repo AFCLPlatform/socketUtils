@@ -1,4 +1,4 @@
-package at.uibk.dps.socketutils;
+package at.uibk.dps.socketutils.enactmentengine;
 
 /**
  * This class is used to define the request which will be sent from the
@@ -45,8 +45,6 @@ public class EnactmentEngineRequest {
 		this.workflowInputFileContent = workflowInputFileContent.clone();
 	}
 
-	/** Getters */
-	
 	public byte[] getWorkflowFileContent() {
 		return workflowFileContent.clone();
 	}

@@ -1,4 +1,4 @@
-package at.uibk.dps.socketutils.logging;
+package at.uibk.dps.socketutils.logger;
 
 /**
  * Request for the creation of the execution ID.

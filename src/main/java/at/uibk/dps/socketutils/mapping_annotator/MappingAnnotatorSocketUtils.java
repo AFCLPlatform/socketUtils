@@ -13,14 +13,14 @@ import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;
 
 /**
- * The {@link MappingAnnotatorRequestUtils} is used to generate the
+ * The {@link MappingAnnotatorSocketUtils} is used to generate the
  * {@link MappingAnnotatorAttributeRequest} objects used for mapping queries to
  * the Attribute Annotator module.
  * 
  * @author Fedor Smirnov
  *
  */
-public final class MappingAnnotatorRequestUtils {
+public final class MappingAnnotatorSocketUtils {
 
 	/**
 	 * 
@@ -55,7 +55,7 @@ public final class MappingAnnotatorRequestUtils {
 	/**
 	 * Default constructor.
 	 */
-	private MappingAnnotatorRequestUtils() {
+	private MappingAnnotatorSocketUtils() {
 	}
 
 	/**
@@ -65,7 +65,7 @@ public final class MappingAnnotatorRequestUtils {
 	 * @param mapping the given mapping
 	 * @return the request object to request the execution time of the given mapping
 	 */
-	public static MappingAnnotatorAttributeRequest generateMappingExecTimeRequest(final Mapping<Task, Resource> mapping) {
+	public static MappingAnnotatorAttributeRequest generateRequestExecTime(final Mapping<Task, Resource> mapping) {
 		return new MappingAnnotatorAttributeRequest(RequestType.MAPPING_EXEC_TIME_REQUEST, mapping);
 	}
 
@@ -83,7 +83,7 @@ public final class MappingAnnotatorRequestUtils {
 	 * @param mappings     the mappings which will be requested
 	 * @return the request object for the init
 	 */
-	public static MappingAnnotatorInitRequest generateMappingInitRequest(final Set<RequestType> requestTypes,
+	public static MappingAnnotatorInitRequest generateRequestInit(final Set<RequestType> requestTypes,
 			final Set<Mapping<Task, Resource>> mappings, final Set<ConfigurationAttribute> configAttributes) {
 		final List<RequestType> typeList = new ArrayList<>(requestTypes);
 		final  List<MappingStruct> mappingList = new ArrayList<>();

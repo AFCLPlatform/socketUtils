@@ -1,4 +1,4 @@
-package at.uibk.dps.socketutils;
+package at.uibk.dps.socketutils.logger;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -11,7 +11,7 @@ import at.uibk.dps.socketutils.entity.Invocation;
  *
  * @author stefanpedratscher
  */
-public class InvocationLogManagerResponse {
+public class LoggerResponse {
 
 	/**
 	 * Execution identifier.
@@ -28,7 +28,7 @@ public class InvocationLogManagerResponse {
 	 */
 	protected final List<Invocation> invocations;
 
-	public InvocationLogManagerResponse(final int executionId, final BigDecimal avgExecutionTime,
+	public LoggerResponse(final int executionId, final BigDecimal avgExecutionTime,
 			final List<Invocation> invocations) {
 		this.executionId = executionId;
 		this.avgExecutionTime = avgExecutionTime;

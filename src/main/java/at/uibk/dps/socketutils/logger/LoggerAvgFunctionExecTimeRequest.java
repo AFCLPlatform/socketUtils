@@ -1,4 +1,4 @@
-package at.uibk.dps.socketutils.logging;
+package at.uibk.dps.socketutils.logger;
 
 public class LoggerAvgFunctionExecTimeRequest extends LoggerRequest {
 

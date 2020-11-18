@@ -1,4 +1,4 @@
-package at.uibk.dps.socketutils;
+package at.uibk.dps.socketutils.scheduler;
 
 import com.google.gson.JsonObject;
 
@@ -28,7 +28,7 @@ public class SchedulerResponse {
 	protected final Statistics enactmentEngineStatistics;
 
 	/**
-	 * Statistics for the scheduler engine.
+	 * Statistics for the scheduler.
 	 */
 	protected final Statistics schedulerStatistics;
 
@@ -41,7 +41,7 @@ public class SchedulerResponse {
 	 * @param enactmentEngineStatistics statistics for the enactment engine.
 	 * @param schedulerStatistics       statistics for the scheduler.
 	 */
-	public SchedulerResponse(final JsonObject workflowResult, final int executionId,
+	protected SchedulerResponse(final JsonObject workflowResult, final int executionId,
 			final Statistics enactmentEngineStatistics, final Statistics schedulerStatistics) {
 		this.workflowResult = workflowResult;
 		this.executionId = executionId;

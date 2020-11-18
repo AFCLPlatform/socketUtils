@@ -1,9 +1,8 @@
-package at.uibk.dps.socketutils;
+package at.uibk.dps.socketutils.resourcemanager;
 
 import java.util.List;
 
 import at.uibk.dps.socketutils.entity.FunctionDetails;
-import at.uibk.dps.socketutils.entity.Status;
 
 /**
  * This class is used to define the response from the resource
@@ -14,15 +13,10 @@ import at.uibk.dps.socketutils.entity.Status;
 public class ResourceManagerResponse {
 
     /**
-     * status of the response.
-     */
-    private Status status;
-
-    /**
      * Filtered function links after resource manager
      * applied the decision.
      */
-    protected final List<FunctionDetails> filteredFunctionLinks;
+    protected final List<FunctionDetails> filteredImplementations;
 
     /**
      * Default constructor for resource manager response.
@@ -31,12 +25,10 @@ public class ResourceManagerResponse {
      *                              applied it's decision
      */
     public ResourceManagerResponse(final List<FunctionDetails> filteredFunctionLinks) {
-        this.filteredFunctionLinks = filteredFunctionLinks;
+        this.filteredImplementations = filteredFunctionLinks;
     }
 
-    /** Getter and Setter */
-
-    public List<FunctionDetails> getFilteredFunctionLinks() {
-        return filteredFunctionLinks;
+    public List<FunctionDetails> getFilteredImplementations() {
+        return filteredImplementations;
     }
 }

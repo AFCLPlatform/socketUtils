@@ -1,4 +1,4 @@
-package at.uibk.dps.socketutils.logging;
+package at.uibk.dps.socketutils.logger;
 
 /**
  * Parent class for all requests to the logger.

@@ -1,4 +1,4 @@
-package at.uibk.dps.socketutils;
+package at.uibk.dps.socketutils.scheduler;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -7,18 +7,22 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import com.google.gson.JsonObject;
+
+import at.uibk.dps.socketutils.entity.Statistics;
+
 /**
  * This class is used to define the request which will be sent from the
  * AFCLPortal to the scheduler module.
  *
  * @author stefanpedratscher
  */
-public final class SchedulerRequestUtils {
+public final class SchedulerSocketUtils {
 
 	/**
 	 * Default constructor.
 	 */
-	private SchedulerRequestUtils() {
+	private SchedulerSocketUtils() {
 	}
 
 	/**
@@ -27,7 +31,7 @@ public final class SchedulerRequestUtils {
 	 * @param workflow the file describing the WF to orchestrate
 	 * @return the orchestration request sent to the scheduler
 	 */
-	public static SchedulerRequest getSchedulerRequestFileContent(final byte[] workflow) {
+	public static SchedulerRequest generateRequest(final byte[] workflow) {
 		return new SchedulerRequest(workflow);
 	}
 
@@ -39,7 +43,7 @@ public final class SchedulerRequestUtils {
 	 * @param schedulerConfig the file with the scheduler configuration
 	 * @return the orchestration request sent to the scheduler
 	 */
-	public static SchedulerRequest getSchedulerRequestFileContent(final byte[] workFlow, final byte[] input,
+	public static SchedulerRequest generateRequest(final byte[] workFlow, final byte[] input,
 			final byte[] schedulerConfig) {
 		return new SchedulerRequest(workFlow, input, schedulerConfig);
 	}
@@ -51,10 +55,8 @@ public final class SchedulerRequestUtils {
 	 * @param schedulerConfig the file with the scheduler configuration
 	 * @return the orchestration request sent to the scheduler
 	 */
-	public static SchedulerRequest getSchedulerRequestFileContent(final byte[] workflow, final byte[] schedulerConfig) {
-		final SchedulerRequest schedulerRequest = new SchedulerRequest(workflow);
-		schedulerRequest.setSchedulerConfig(schedulerConfig);
-		return schedulerRequest;
+	public static SchedulerRequest generateRequest(final byte[] workflow, final byte[] schedulerConfig) {
+		return new SchedulerRequest(workflow, null, schedulerConfig);
 	}
 
 	/**
@@ -66,7 +68,7 @@ public final class SchedulerRequestUtils {
 	 *         provided file.
 	 * @throws IOException
 	 */
-	public static SchedulerRequest getSchedulerRequestFilePath(final String filePath) throws IOException {
+	public static SchedulerRequest generateRequest(final String filePath) throws IOException {
 		final File file = new File(filePath);
 		final byte[] data = new byte[(int) file.length()];
 		try (InputStream fis = Files.newInputStream(Paths.get(filePath))) {
@@ -74,6 +76,20 @@ public final class SchedulerRequestUtils {
 				bis.read(data, 0, data.length);
 			}
 		}
-		return getSchedulerRequestFileContent(data);
+		return generateRequest(data);
+	}
+
+	/**
+	 * Generates a scheduler response with the provided content.
+	 * 
+	 * @param workflowResult            Json object with the calculation result
+	 * @param executionId               the execution ID of the workflow
+	 * @param enactmentEngineStatistics the statistics describing the EE
+	 * @param schedulerStatistics       the statistics describing the scheduler
+	 * @return a scheduler response with the provided content
+	 */
+	public static SchedulerResponse generateResponse(final JsonObject workflowResult, final int executionId,
+			final Statistics enactmentEngineStatistics, final Statistics schedulerStatistics) {
+		return new SchedulerResponse(workflowResult, executionId, enactmentEngineStatistics, schedulerStatistics);
 	}
 }
