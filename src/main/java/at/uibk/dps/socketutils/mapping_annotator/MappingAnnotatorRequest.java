@@ -5,8 +5,14 @@ package at.uibk.dps.socketutils.mapping_annotator;
  * 
  * @author Fedor Smirnov
  */
-public abstract class MappingAnnotatorRequest {
+public class MappingAnnotatorRequest {
 
+	/**
+	 * The different types of requests sent to the mapping annotator.
+	 * 
+	 * @author Fedor Smirnov
+	 *
+	 */
 	public enum RequestType {
 		/**
 		 * Request for the annotation of the execution time of a mapping
@@ -25,7 +31,7 @@ public abstract class MappingAnnotatorRequest {
 	 * 
 	 * @param requestType
 	 */
-	protected MappingAnnotatorRequest(RequestType requestType) {
+	protected MappingAnnotatorRequest(final RequestType requestType) {
 		this.requestType = requestType;
 	}
 

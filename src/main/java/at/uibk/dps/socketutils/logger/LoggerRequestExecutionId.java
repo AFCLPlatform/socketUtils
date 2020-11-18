@@ -6,12 +6,12 @@ package at.uibk.dps.socketutils.logger;
  * @author Fedor Smirnov
  *
  */
-public class LoggerExecutionIdRequest extends LoggerRequest {
+public class LoggerRequestExecutionId extends LoggerRequest {
 
 	/**
 	 * No attributes necessary
 	 */
-	protected LoggerExecutionIdRequest() {
+	protected LoggerRequestExecutionId() {
 		super(LoggerRequest.RequestType.GET_EXECUTION_ID);
 	}
 }

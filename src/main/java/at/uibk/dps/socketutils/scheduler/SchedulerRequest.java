@@ -45,23 +45,23 @@ public class SchedulerRequest {
 		this.schedulerConfig = schedulerConfig.clone();
 	}
 
-	public byte[] getWorkflowFile() {
+	public byte[] getWorkflow() {
 		return workflow.clone();
 	}
 
 	public byte[] getWorkflowInput() {
-		if (workflowInput != null)
-			return workflowInput.clone();
-		else {
+		if (workflowInput == null) {
 			throw new IllegalStateException("Workflow input not set, but requested from a scheduler request.");
+		} else {
+			return workflowInput.clone();
 		}
 	}
 
 	public byte[] getSchedulerConfig() {
-		if (schedulerConfig != null) {
-			return schedulerConfig.clone();
-		} else {
+		if (schedulerConfig == null) {
 			throw new IllegalStateException("Scheduler config not set, but requested from a scheduler request.");
+		} else {
+			return schedulerConfig.clone();
 		}
 	}
 }

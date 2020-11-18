@@ -25,8 +25,8 @@ public final class LoggerSocketUtils {
 	 * 
 	 * @return a request for a new execution ID
 	 */
-	public static LoggerExecutionIdRequest generateExecutionIdRequest() {
-		return new LoggerExecutionIdRequest();
+	public static LoggerRequestExecutionId generateExecutionIdRequest() {
+		return new LoggerRequestExecutionId();
 	}
 
 	/**
@@ -39,22 +39,22 @@ public final class LoggerSocketUtils {
 	 * @param the       ID of the execution
 	 * @return a request to update the logs of a requested executution
 	 */
-	public static LoggerUpdateExecutionLogsRequest generateUpdateLogRequest(final Execution execution,
+	public static LoggerRequestXLogsUpdate generateRequestUpdateLog(final Execution execution,
 			final int executionId) {
-		return new LoggerUpdateExecutionLogsRequest(execution, executionId);
+		return new LoggerRequestXLogsUpdate(execution, executionId);
 	}
 
-	public static LoggerFunctionLogRequest generateFunctionLogRequest(final int executionId) {
-		return new LoggerFunctionLogRequest(executionId);
+	public static LoggerRequestFunctionLog generateRequestFunctionLog(final int executionId) {
+		return new LoggerRequestFunctionLog(executionId);
 	}
 
-	public static LoggerInvocationWriteRequest generateInsertInvocationRequest(final Invocation invocation,
+	public static LoggerRequestInvocationWrite generateRequestInovationWrite(final Invocation invocation,
 			final int executionId) {
-		return new LoggerInvocationWriteRequest(invocation, executionId);
+		return new LoggerRequestInvocationWrite(invocation, executionId);
 	}
 
-	public static LoggerAvgFunctionExecTimeRequest generateAvgFunctionExecTimeRequest(final String functionLink) {
-		return new LoggerAvgFunctionExecTimeRequest(functionLink);
+	public static LoggerRequestFuncXTimeAvg generateRequestFuncXTimeAvg(final String functionLink) {
+		return new LoggerRequestFuncXTimeAvg(functionLink);
 	}
 
 	public static LoggerResponse generateResponse(final int executionId, final BigDecimal avgExecutionTime,

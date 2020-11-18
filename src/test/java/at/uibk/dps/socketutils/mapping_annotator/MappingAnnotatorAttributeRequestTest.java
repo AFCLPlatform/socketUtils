@@ -19,7 +19,7 @@ public class MappingAnnotatorAttributeRequestTest {
 		Resource r = new Resource("r");
 		Mapping<Task, Resource> m = new Mapping<Task, Resource>("m", t, r);
 		RequestType typeMock = mock(RequestType.class);
-		MappingAnnotatorAttributeRequest tested = new MappingAnnotatorAttributeRequest(typeMock, m);
+		MappingAnnotatorRequestAttribute tested = new MappingAnnotatorRequestAttribute(typeMock, m);
 		assertEquals(typeMock, tested.getRequestType());
 	}
 	
@@ -29,7 +29,7 @@ public class MappingAnnotatorAttributeRequestTest {
 		Resource r = new Resource("r");
 		Mapping<Task, Resource> m = new Mapping<Task, Resource>("m", t, r);
 		RequestType typeMock = mock(RequestType.class);
-		MappingAnnotatorAttributeRequest tested = new MappingAnnotatorAttributeRequest(typeMock, m);
+		MappingAnnotatorRequestAttribute tested = new MappingAnnotatorRequestAttribute(typeMock, m);
 		assertEquals(new MappingStruct(m), tested.getMapping());
 	}
 }

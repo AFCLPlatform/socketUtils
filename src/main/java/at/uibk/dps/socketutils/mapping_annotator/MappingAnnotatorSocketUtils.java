@@ -14,7 +14,7 @@ import net.sf.opendse.model.Task;
 
 /**
  * The {@link MappingAnnotatorSocketUtils} is used to generate the
- * {@link MappingAnnotatorAttributeRequest} objects used for mapping queries to
+ * {@link MappingAnnotatorRequestAttribute} objects used for mapping queries to
  * the Attribute Annotator module.
  * 
  * @author Fedor Smirnov
@@ -47,10 +47,10 @@ public final class MappingAnnotatorSocketUtils {
 		START_TIME, SUM
 	}
 
-	public static final String ATTR_NAME_ACTIVE_FUNCTION_PREDICTOR = "Active function predictor";
-	public static final String ATTR_NAME_RTT_PREDICTOR = "Rtt predictor";
-	public static final String ATTR_NAME_START_TIME_PREDICTOR = "Start time predictor";
-	public static final String ATTR_NAME_CALCULATION_TYPE_EXEC_TIME = "calculation type";
+	public static final String ATTR_PRED_ACTFUNC = "Active function predictor";
+	public static final String ATTR_PRED_RTT = "Rtt predictor";
+	public static final String ATTR_PRED_STIME = "Start time predictor";
+	public static final String ATTR_CALC_XTIME = "calculation type";
 
 	/**
 	 * Default constructor.
@@ -65,8 +65,8 @@ public final class MappingAnnotatorSocketUtils {
 	 * @param mapping the given mapping
 	 * @return the request object to request the execution time of the given mapping
 	 */
-	public static MappingAnnotatorAttributeRequest generateRequestExecTime(final Mapping<Task, Resource> mapping) {
-		return new MappingAnnotatorAttributeRequest(RequestType.MAPPING_EXEC_TIME_REQUEST, mapping);
+	public static MappingAnnotatorRequestAttribute generateRequestExecTime(final Mapping<Task, Resource> mapping) {
+		return new MappingAnnotatorRequestAttribute(RequestType.MAPPING_EXEC_TIME_REQUEST, mapping);
 	}
 
 	/**
@@ -83,18 +83,18 @@ public final class MappingAnnotatorSocketUtils {
 	 * @param mappings     the mappings which will be requested
 	 * @return the request object for the init
 	 */
-	public static MappingAnnotatorInitRequest generateRequestInit(final Set<RequestType> requestTypes,
+	public static MappingAnnotatorRequestInit generateRequestInit(final Set<RequestType> requestTypes,
 			final Set<Mapping<Task, Resource>> mappings, final Set<ConfigurationAttribute> configAttributes) {
 		final List<RequestType> typeList = new ArrayList<>(requestTypes);
 		final  List<MappingStruct> mappingList = new ArrayList<>();
-		for (Mapping<Task, Resource> m : mappings) {
-			mappingList.add(new MappingStruct(m));
+		for (final Mapping<Task, Resource> mapping : mappings) {
+			mappingList.add(new MappingStruct(mapping));
 		}
 		final Map<String, String> configMap = new ConcurrentHashMap<>();
 		for (final ConfigurationAttribute confAttr : configAttributes) {
 			configMap.put(confAttr.getKey(), confAttr.getValue());
 		}
-		return new MappingAnnotatorInitRequest(typeList, mappingList,
+		return new MappingAnnotatorRequestInit(typeList, mappingList,
 				configMap);
 	}
 }
