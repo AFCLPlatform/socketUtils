@@ -12,7 +12,7 @@ public class ImplementationDbRequest {
 	 * The requested function type.
 	 */
 	protected final String functionType;
-	
+
 	/**
 	 * Setter constructor (used by the {@link ImplementationDbSocketUtils}.)
 	 * 
@@ -20,5 +20,9 @@ public class ImplementationDbRequest {
 	 */
 	protected ImplementationDbRequest(final String functionType) {
 		this.functionType = functionType;
+	}
+
+	public String getFunctionType() {
+		return functionType;
 	}
 }

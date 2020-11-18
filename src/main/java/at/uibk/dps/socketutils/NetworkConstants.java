@@ -3,7 +3,7 @@ package at.uibk.dps.socketutils;
 /**
  * Constants defined within the network.
  */
-public class NetworkConstants {
+public final class NetworkConstants {
 
     // module address information
 
@@ -48,10 +48,4 @@ public class NetworkConstants {
      */
     private NetworkConstants() { }
 
-    /**
-     * Request type.
-     */
-    public enum RequestType {
-        ATTRIBUTE_EXEC_TIME
-    }
 }
