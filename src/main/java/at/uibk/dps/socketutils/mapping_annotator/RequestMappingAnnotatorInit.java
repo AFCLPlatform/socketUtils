@@ -45,6 +45,7 @@ public class RequestMappingAnnotatorInit extends RequestMappingAnnotator{
 		return configurationAttributes;
 	}
 
+	@Override
 	public RequestType getRequestType() {
 		return requestType;
 	}

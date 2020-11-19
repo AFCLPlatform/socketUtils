@@ -40,7 +40,8 @@ public final class UtilsSocketLogger {
 	}
 
 	/**
-	 * Generates a request to lookup base function logs of a specific execution in the database.
+	 * Generates a request to lookup base function logs of a
+	 * specific execution in the database.
 	 *
 	 * @param executionId identifier of the workflow execution.
 	 * @return a request to lookup base function logs.

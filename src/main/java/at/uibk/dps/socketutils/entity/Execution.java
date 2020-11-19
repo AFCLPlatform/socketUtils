@@ -65,6 +65,24 @@ public class Execution {
     }
 
     /**
+     * Constructor for an execution.
+     *
+     * @param eeStart        start time of the enactment engine.
+     * @param eeEnd          end time of the enactment engine.
+     * @param schedulerStart start time of the scheduler.
+     * @param schedulerEnd   end time of the scheduler.
+     * @param portalStart    start time of the portal.
+     * @param portalEnd      end time of the portal.
+     * @param executionId    identifier of a workflow execution.
+     */
+    public Execution(final Timestamp eeStart, final Timestamp eeEnd, final Timestamp schedulerStart,
+                     final Timestamp schedulerEnd, final Timestamp portalStart, final Timestamp portalEnd,
+                     final int executionId) {
+        this(eeStart,eeEnd,schedulerStart,schedulerEnd,portalStart,portalEnd);
+        this.executionId = executionId;
+    }
+
+    /**
      * Getter and Setter
      */
 
@@ -118,5 +136,5 @@ public class Execution {
 
     public int getExecutionId() { return executionId; }
 
-    public void setExecutionId(int executionId) { this.executionId = executionId; }
+    public void setExecutionId(final int executionId) { this.executionId = executionId; }
 }
