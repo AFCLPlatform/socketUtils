@@ -1,12 +1,12 @@
 package at.uibk.dps.socketutils.implementationdb;
 
 /**
- * The {@link ImplementationDbRequest} is used to query the implementation DB
+ * The {@link RequestImplementationDb} is used to query the implementation DB
  * module for all possibilities to implement a certain function type.
  * 
  * @author Fedor Smirnov
  */
-public class ImplementationDbRequest {
+public class RequestImplementationDb {
 
 	/**
 	 * The requested function type.
@@ -14,11 +14,11 @@ public class ImplementationDbRequest {
 	protected final String functionType;
 
 	/**
-	 * Setter constructor (used by the {@link ImplementationDbSocketUtils}.)
+	 * Setter constructor (used by the {@link SocketUtilsImplementationDb}.)
 	 * 
 	 * @param functionType
 	 */
-	protected ImplementationDbRequest(final String functionType) {
+	protected RequestImplementationDb(final String functionType) {
 		this.functionType = functionType;
 	}
 

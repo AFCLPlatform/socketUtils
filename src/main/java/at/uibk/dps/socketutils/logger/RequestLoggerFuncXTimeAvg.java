@@ -1,11 +1,11 @@
 package at.uibk.dps.socketutils.logger;
 
-public class LoggerRequestFuncXTimeAvg extends LoggerRequest {
+public class RequestLoggerFuncXTimeAvg extends RequestLogger {
 
 	protected final String functionLink;
 
-	protected LoggerRequestFuncXTimeAvg(final String functionLink) {
-		super(LoggerRequest.RequestType.GET_AVG_EXEC_TIME);
+	protected RequestLoggerFuncXTimeAvg(final String functionLink) {
+		super(RequestLogger.RequestType.GET_AVG_EXEC_TIME);
 		this.functionLink = functionLink;
 	}
 

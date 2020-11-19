@@ -11,7 +11,7 @@ import at.uibk.dps.socketutils.entity.Invocation;
  *
  * @author stefanpedratscher
  */
-public class LoggerResponse {
+public class ResponseLogger {
 
 	/**
 	 * Execution identifier.
@@ -28,7 +28,7 @@ public class LoggerResponse {
 	 */
 	protected final List<Invocation> invocations;
 
-	public LoggerResponse(final int executionId, final BigDecimal avgExecutionTime,
+	public ResponseLogger(final int executionId, final BigDecimal avgExecutionTime,
 			final List<Invocation> invocations) {
 		this.executionId = executionId;
 		this.avgExecutionTime = avgExecutionTime;

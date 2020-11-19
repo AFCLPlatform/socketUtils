@@ -1,16 +1,16 @@
-package at.uibk.dps.socketutils.enactmentengine;
+package at.uibk.dps.socketutils.scheduler;
 
 import com.google.gson.JsonObject;
 
 import at.uibk.dps.socketutils.entity.Statistics;
 
 /**
- * This class is used to define the response from the enactment engine module
- * (sent to the scheduler or AFCLPortal).
+ * This class is used to define the response from the scheduler module (sent to
+ * the AFCLPortal).
  *
  * @author stefanpedratscher
  */
-public class EnactmentEngineResponse {
+public class ResponseScheduler {
 
 	/**
 	 * The result of the workflow.
@@ -28,19 +28,28 @@ public class EnactmentEngineResponse {
 	protected final Statistics enactmentEngineStatistics;
 
 	/**
-	 * Default constructor for enactment engine response.
+	 * Statistics for the scheduler.
+	 */
+	protected final Statistics schedulerStatistics;
+
+	/**
+	 * Default constructor for scheduler response.
 	 *
 	 * @param workflowResult            result of the workflow.
 	 * @param executionId               execution identifier of the workflow
 	 *                                  execution.
 	 * @param enactmentEngineStatistics statistics for the enactment engine.
+	 * @param schedulerStatistics       statistics for the scheduler.
 	 */
-	protected EnactmentEngineResponse(final JsonObject workflowResult, final int executionId,
-			final Statistics enactmentEngineStatistics) {
+	protected ResponseScheduler(final JsonObject workflowResult, final int executionId,
+			final Statistics enactmentEngineStatistics, final Statistics schedulerStatistics) {
 		this.workflowResult = workflowResult;
 		this.executionId = executionId;
 		this.enactmentEngineStatistics = enactmentEngineStatistics;
+		this.schedulerStatistics = schedulerStatistics;
 	}
+
+	/** Getter and Setter */
 
 	public JsonObject getWorkflowResult() {
 		return workflowResult;
@@ -52,5 +61,9 @@ public class EnactmentEngineResponse {
 
 	public Statistics getEnactmentEngineStatistics() {
 		return enactmentEngineStatistics;
+	}
+
+	public Statistics getSchedulerStatistics() {
+		return schedulerStatistics;
 	}
 }

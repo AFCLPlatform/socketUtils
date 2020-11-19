@@ -10,12 +10,12 @@ import java.util.List;
  * 
  * @author Fedor Smirnov
  */
-public final class ImplementationDbSocketUtils {
+public final class SocketUtilsImplementationDb {
 
 	/**
 	 * Static container => no constructor
 	 */
-	private ImplementationDbSocketUtils() {
+	private SocketUtilsImplementationDb() {
 	}
 
 	/**
@@ -26,8 +26,8 @@ public final class ImplementationDbSocketUtils {
 	 * @return a request requesting all implementations for the requested function
 	 *         type
 	 */
-	public static ImplementationDbRequest generateRequest(final String functionType) {
-		return new ImplementationDbRequest(functionType);
+	public static RequestImplementationDb generateRequest(final String functionType) {
+		return new RequestImplementationDb(functionType);
 	}
 
 	/**
@@ -36,7 +36,7 @@ public final class ImplementationDbSocketUtils {
 	 * @param implementationDetails the list of possible implementations
 	 * @return a response containing all implementations for a previous request
 	 */
-	public static ImplementationDbResponse generateResponse(final List<FunctionDetails> implementationDetails) {
-		return new ImplementationDbResponse(implementationDetails);
+	public static ResponseImplementationDb generateResponse(final List<FunctionDetails> implementationDetails) {
+		return new ResponseImplementationDb(implementationDetails);
 	}
 }

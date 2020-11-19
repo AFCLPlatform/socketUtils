@@ -6,7 +6,7 @@ package at.uibk.dps.socketutils.resourcemanager;
  * 
  * @author Fedor Smirnov
  */
-public class ResourceManagerRequestFree extends ResourceManagerRequest {
+public class RequestResourceManagerFree extends RequestResourceManager {
 
 	/**
 	 * Constructor for a free-resources request to the resource manager module.
@@ -15,7 +15,7 @@ public class ResourceManagerRequestFree extends ResourceManagerRequest {
 	 * @param requestType           of the request.
 	 * @param possibleFunctionLinks all possible function links.
 	 */
-	protected ResourceManagerRequestFree(final String functionType) {
+	protected RequestResourceManagerFree(final String functionType) {
 		super(functionType, RequestType.GET_FREE_RESOURCES);
 	}
 

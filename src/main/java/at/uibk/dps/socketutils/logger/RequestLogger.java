@@ -6,7 +6,7 @@ package at.uibk.dps.socketutils.logger;
  * @author Fedor Smirnov
  *
  */
-public class LoggerRequest {
+public class RequestLogger {
 
 	/**
 	 * Enum for the different types of requests which can be made to the logger.
@@ -24,7 +24,7 @@ public class LoggerRequest {
 	 * 
 	 * @param requestType the type of the request.
 	 */
-	protected LoggerRequest(final RequestType requestType) {
+	protected RequestLogger(final RequestType requestType) {
 		this.requestType = requestType;
 	}
 

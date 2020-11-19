@@ -5,17 +5,17 @@ import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;
 
 /**
- * The {@link MappingAnnotatorRequestAttribute} is used as the template for the
+ * The {@link RequestMappingAnnotatorAttribute} is used as the template for the
  * Gson Object used for the queries to the attribute annotator module addressing
  * attributes of mappings..
  * 
  * @author Fedor Smirnov
  */
-public class MappingAnnotatorRequestAttribute extends MappingAnnotatorRequest {
+public class RequestMappingAnnotatorAttribute extends RequestMappingAnnotator {
 
 	protected final MappingStruct mapping;
 
-	protected MappingAnnotatorRequestAttribute(final RequestType requestType, final Mapping<Task, Resource> mapping) {
+	protected RequestMappingAnnotatorAttribute(final RequestType requestType, final Mapping<Task, Resource> mapping) {
 		super(requestType);
 		this.mapping = new MappingStruct(mapping);
 	}

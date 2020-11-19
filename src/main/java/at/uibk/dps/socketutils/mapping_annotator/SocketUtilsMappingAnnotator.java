@@ -7,20 +7,20 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import at.uibk.dps.socketutils.entity.ConfigurationAttribute;
-import at.uibk.dps.socketutils.mapping_annotator.MappingAnnotatorRequest.RequestType;
+import at.uibk.dps.socketutils.mapping_annotator.RequestMappingAnnotator.RequestType;
 import net.sf.opendse.model.Mapping;
 import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;
 
 /**
- * The {@link MappingAnnotatorSocketUtils} is used to generate the
- * {@link MappingAnnotatorRequestAttribute} objects used for mapping queries to
+ * The {@link SocketUtilsMappingAnnotator} is used to generate the
+ * {@link RequestMappingAnnotatorAttribute} objects used for mapping queries to
  * the Attribute Annotator module.
  * 
  * @author Fedor Smirnov
  *
  */
-public final class MappingAnnotatorSocketUtils {
+public final class SocketUtilsMappingAnnotator {
 
 	/**
 	 * 
@@ -55,7 +55,7 @@ public final class MappingAnnotatorSocketUtils {
 	/**
 	 * Default constructor.
 	 */
-	private MappingAnnotatorSocketUtils() {
+	private SocketUtilsMappingAnnotator() {
 	}
 
 	/**
@@ -65,8 +65,8 @@ public final class MappingAnnotatorSocketUtils {
 	 * @param mapping the given mapping
 	 * @return the request object to request the execution time of the given mapping
 	 */
-	public static MappingAnnotatorRequestAttribute generateRequestExecTime(final Mapping<Task, Resource> mapping) {
-		return new MappingAnnotatorRequestAttribute(RequestType.MAPPING_EXEC_TIME_REQUEST, mapping);
+	public static RequestMappingAnnotatorAttribute generateRequestExecTime(final Mapping<Task, Resource> mapping) {
+		return new RequestMappingAnnotatorAttribute(RequestType.MAPPING_EXEC_TIME_REQUEST, mapping);
 	}
 
 	/**
@@ -83,7 +83,7 @@ public final class MappingAnnotatorSocketUtils {
 	 * @param mappings     the mappings which will be requested
 	 * @return the request object for the init
 	 */
-	public static MappingAnnotatorRequestInit generateRequestInit(final Set<RequestType> requestTypes,
+	public static RequestMappingAnnotatorInit generateRequestInit(final Set<RequestType> requestTypes,
 			final Set<Mapping<Task, Resource>> mappings, final Set<ConfigurationAttribute> configAttributes) {
 		final List<RequestType> typeList = new ArrayList<>(requestTypes);
 		final  List<MappingStruct> mappingList = new ArrayList<>();
@@ -94,7 +94,7 @@ public final class MappingAnnotatorSocketUtils {
 		for (final ConfigurationAttribute confAttr : configAttributes) {
 			configMap.put(confAttr.getKey(), confAttr.getValue());
 		}
-		return new MappingAnnotatorRequestInit(typeList, mappingList,
+		return new RequestMappingAnnotatorInit(typeList, mappingList,
 				configMap);
 	}
 }

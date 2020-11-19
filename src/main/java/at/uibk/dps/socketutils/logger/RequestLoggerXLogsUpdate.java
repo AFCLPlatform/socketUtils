@@ -8,7 +8,7 @@ import at.uibk.dps.socketutils.entity.Execution;
  * @author Fedor Smirnov
  *
  */
-public class LoggerRequestXLogsUpdate extends LoggerRequest{
+public class RequestLoggerXLogsUpdate extends RequestLogger{
 
 	protected final Execution execution;
 	
@@ -20,8 +20,8 @@ public class LoggerRequestXLogsUpdate extends LoggerRequest{
 	 * @param execution the requested execution
 	 * @param executionId the ID of the requested Execution
 	 */
-	protected LoggerRequestXLogsUpdate(final Execution execution,final int executionId) {
-		super(LoggerRequest.RequestType.UPDATE_EXECUTION);
+	protected RequestLoggerXLogsUpdate(final Execution execution,final int executionId) {
+		super(RequestLogger.RequestType.UPDATE_EXECUTION);
 		this.execution = execution;
 		this.executionId = executionId;
 	}

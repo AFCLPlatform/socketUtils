@@ -6,7 +6,7 @@ package at.uibk.dps.socketutils.resourcemanager;
  * @author Fedor Smirnov
  *
  */
-public class ResourceManagerRequest {
+public class RequestResourceManager {
 
 	/**
 	 * Possible request types to the resource manager.
@@ -26,11 +26,11 @@ public class ResourceManagerRequest {
 	protected final RequestType requestType;
 
 	/**
-	 * Every {@link ResourceManagerRequest} must have a defined type.
+	 * Every {@link RequestResourceManager} must have a defined type.
 	 * 
 	 * @param requestType the type of the constructed request.
 	 */
-	protected ResourceManagerRequest(final String functionType, final RequestType requestType) {
+	protected RequestResourceManager(final String functionType, final RequestType requestType) {
 		this.functionType = functionType;
 		this.requestType = requestType;
 	}

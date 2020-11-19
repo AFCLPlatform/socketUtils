@@ -5,13 +5,13 @@ import java.util.List;
 import at.uibk.dps.socketutils.entity.FunctionDetails;
 
 /**
- * The {@link ImplementationDbResponse} is used to wrap the response of the
+ * The {@link ResponseImplementationDb} is used to wrap the response of the
  * implementation db containing all implementations for a requested function
  * type.
  * 
  * @author Fedor Smirnov
  */
-public class ImplementationDbResponse {
+public class ResponseImplementationDb {
 
 	/**
 	 * The list of all implementations available for the requested function type.
@@ -19,11 +19,11 @@ public class ImplementationDbResponse {
 	protected final List<FunctionDetails> implementations;
 
 	/**
-	 * Setter constructor (used by the {@link ImplementationDbSocketUtils}).
+	 * Setter constructor (used by the {@link SocketUtilsImplementationDb}).
 	 * 
 	 * @param implementations
 	 */
-	protected ImplementationDbResponse(final List<FunctionDetails> implementations) {
+	protected ResponseImplementationDb(final List<FunctionDetails> implementations) {
 		this.implementations = implementations;
 	}
 

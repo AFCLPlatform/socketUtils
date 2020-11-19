@@ -6,7 +6,7 @@ package at.uibk.dps.socketutils.scheduler;
  *
  * @author stefanpedratscher
  */
-public class SchedulerRequest {
+public class RequestScheduler {
 
 	/**
 	 * Content of the workflow yaml file.
@@ -28,7 +28,7 @@ public class SchedulerRequest {
 	 *
 	 * @param workflow content of the workflow file.
 	 */
-	public SchedulerRequest(final byte[] workflow) {
+	public RequestScheduler(final byte[] workflow) {
 		this(workflow, null, null);
 	}
 
@@ -39,7 +39,7 @@ public class SchedulerRequest {
 	 * @param workflowInput   content of the workflow input file.
 	 * @param schedulerConfig content of the config file.
 	 */
-	public SchedulerRequest(final byte[] workflow, final byte[] workflowInput, final byte[] schedulerConfig) {
+	public RequestScheduler(final byte[] workflow, final byte[] workflowInput, final byte[] schedulerConfig) {
 		this.workflow = workflow.clone();
 		this.workflowInput = workflowInput.clone();
 		this.schedulerConfig = schedulerConfig.clone();

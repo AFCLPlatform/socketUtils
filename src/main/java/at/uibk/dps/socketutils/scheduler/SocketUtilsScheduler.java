@@ -17,12 +17,12 @@ import at.uibk.dps.socketutils.entity.Statistics;
  *
  * @author stefanpedratscher
  */
-public final class SchedulerSocketUtils {
+public final class SocketUtilsScheduler {
 
 	/**
 	 * Default constructor.
 	 */
-	private SchedulerSocketUtils() {
+	private SocketUtilsScheduler() {
 	}
 
 	/**
@@ -31,8 +31,8 @@ public final class SchedulerSocketUtils {
 	 * @param workflow the file describing the WF to orchestrate
 	 * @return the orchestration request sent to the scheduler
 	 */
-	public static SchedulerRequest generateRequest(final byte[] workflow) {
-		return new SchedulerRequest(workflow);
+	public static RequestScheduler generateRequest(final byte[] workflow) {
+		return new RequestScheduler(workflow);
 	}
 
 	/**
@@ -43,9 +43,9 @@ public final class SchedulerSocketUtils {
 	 * @param schedulerConfig the file with the scheduler configuration
 	 * @return the orchestration request sent to the scheduler
 	 */
-	public static SchedulerRequest generateRequest(final byte[] workFlow, final byte[] input,
+	public static RequestScheduler generateRequest(final byte[] workFlow, final byte[] input,
 			final byte[] schedulerConfig) {
-		return new SchedulerRequest(workFlow, input, schedulerConfig);
+		return new RequestScheduler(workFlow, input, schedulerConfig);
 	}
 
 	/**
@@ -55,20 +55,20 @@ public final class SchedulerSocketUtils {
 	 * @param schedulerConfig the file with the scheduler configuration
 	 * @return the orchestration request sent to the scheduler
 	 */
-	public static SchedulerRequest generateRequest(final byte[] workflow, final byte[] schedulerConfig) {
-		return new SchedulerRequest(workflow, null, schedulerConfig);
+	public static RequestScheduler generateRequest(final byte[] workflow, final byte[] schedulerConfig) {
+		return new RequestScheduler(workflow, null, schedulerConfig);
 	}
 
 	/**
-	 * Returns an {@link SchedulerRequest} created from the workflow saved in the
+	 * Returns an {@link RequestScheduler} created from the workflow saved in the
 	 * file with the provided path.
 	 * 
 	 * @param filePath the provided path name
-	 * @return the {@link SchedulerRequest} containing the wf as specified in the
+	 * @return the {@link RequestScheduler} containing the wf as specified in the
 	 *         provided file.
 	 * @throws IOException
 	 */
-	public static SchedulerRequest generateRequest(final String filePath) throws IOException {
+	public static RequestScheduler generateRequest(final String filePath) throws IOException {
 		final File file = new File(filePath);
 		final byte[] data = new byte[(int) file.length()];
 		try (InputStream fis = Files.newInputStream(Paths.get(filePath))) {
@@ -88,8 +88,8 @@ public final class SchedulerSocketUtils {
 	 * @param schedulerStatistics       the statistics describing the scheduler
 	 * @return a scheduler response with the provided content
 	 */
-	public static SchedulerResponse generateResponse(final JsonObject workflowResult, final int executionId,
+	public static ResponseScheduler generateResponse(final JsonObject workflowResult, final int executionId,
 			final Statistics enactmentEngineStatistics, final Statistics schedulerStatistics) {
-		return new SchedulerResponse(workflowResult, executionId, enactmentEngineStatistics, schedulerStatistics);
+		return new ResponseScheduler(workflowResult, executionId, enactmentEngineStatistics, schedulerStatistics);
 	}
 }

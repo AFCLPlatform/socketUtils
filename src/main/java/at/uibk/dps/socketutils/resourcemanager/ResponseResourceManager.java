@@ -10,7 +10,7 @@ import at.uibk.dps.socketutils.entity.FunctionDetails;
  *
  * @author stefanpedratscher
  */
-public class ResourceManagerResponse {
+public class ResponseResourceManager {
 
     /**
      * Filtered function links after resource manager
@@ -24,7 +24,7 @@ public class ResourceManagerResponse {
      * @param filteredFunctionLinks after resource manager
      *                              applied it's decision
      */
-    public ResourceManagerResponse(final List<FunctionDetails> filteredFunctionLinks) {
+    public ResponseResourceManager(final List<FunctionDetails> filteredFunctionLinks) {
         this.filteredImplementations = filteredFunctionLinks;
     }
 

@@ -6,7 +6,7 @@ package at.uibk.dps.socketutils.resourcemanager;
  *
  * @author stefanpedratscher
  */
-public class ResourceManagerRequestAll extends ResourceManagerRequest {
+public class RequestResourceManagerAll extends RequestResourceManager {
 
 	/**
 	 * Constructor for an all-resources request to the resource manager module.
@@ -15,7 +15,7 @@ public class ResourceManagerRequestAll extends ResourceManagerRequest {
 	 * @param requestType           of the request.
 	 * @param possibleFunctionLinks all possible function links.
 	 */
-	protected ResourceManagerRequestAll(final String functionType) {
+	protected RequestResourceManagerAll(final String functionType) {
 		super(functionType, RequestType.GET_ALL_RESOURCES);
 	}
 }

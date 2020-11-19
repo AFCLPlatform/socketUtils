@@ -6,7 +6,7 @@ package at.uibk.dps.socketutils.enactmentengine;
  *
  * @author stefanpedratscher
  */
-public class EnactmentEngineRequest {
+public class RequestEnactmentEngine {
 
 	/**
 	 * Content of the workflow yaml file.
@@ -28,7 +28,7 @@ public class EnactmentEngineRequest {
 	 *
 	 * @param workflowFile content of the workflow file.
 	 */
-	public EnactmentEngineRequest(final byte[] workflowFile, final boolean logResults) {
+	public RequestEnactmentEngine(final byte[] workflowFile, final boolean logResults) {
 		this(workflowFile, null, logResults);
 	}
 
@@ -38,7 +38,7 @@ public class EnactmentEngineRequest {
 	 * @param workflowFileContent      content of the workflow file.
 	 * @param workflowInputFileContent content of the workflow input file.
 	 */
-	public EnactmentEngineRequest(final byte[] workflowFileContent, final byte[] workflowInputFileContent,
+	public RequestEnactmentEngine(final byte[] workflowFileContent, final byte[] workflowInputFileContent,
 			final boolean logResults) {
 		this.logResults = logResults;
 		this.workflowFileContent = workflowFileContent.clone();

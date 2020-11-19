@@ -10,12 +10,12 @@ import at.uibk.dps.socketutils.entity.FunctionDetails;
  *
  * @author stefanpedratscher
  */
-public final class ResourceManagerSocketUtils {
+public final class SocketUtilsResourceManager {
 
 	/**
 	 * Class is a static method constructor.
 	 */
-	private ResourceManagerSocketUtils() {
+	private SocketUtilsResourceManager() {
 	}
 
 	/**
@@ -24,8 +24,8 @@ public final class ResourceManagerSocketUtils {
 	 * @param functionLinks function links.
 	 * @return resource manager request.
 	 */
-	public static ResourceManagerRequestFree generateRequestFree(final String functionType) {
-		return new ResourceManagerRequestFree(functionType);
+	public static RequestResourceManagerFree generateRequestFree(final String functionType) {
+		return new RequestResourceManagerFree(functionType);
 	}
 
 	/**
@@ -34,8 +34,8 @@ public final class ResourceManagerSocketUtils {
 	 * @param functionLinks function links.
 	 * @return resource manager request.
 	 */
-	public static ResourceManagerRequestAll generateRequestAll(final String functionType) {
-		return new ResourceManagerRequestAll(functionType);
+	public static RequestResourceManagerAll generateRequestAll(final String functionType) {
+		return new RequestResourceManagerAll(functionType);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public final class ResourceManagerSocketUtils {
 	 * @return a response containing the filtered function implementations for a
 	 *         previous request
 	 */
-	public static ResourceManagerResponse generateResponse(final List<FunctionDetails> filteredImplementations) {
-		return new ResourceManagerResponse(filteredImplementations);
+	public static ResponseResourceManager generateResponse(final List<FunctionDetails> filteredImplementations) {
+		return new ResponseResourceManager(filteredImplementations);
 	}
 }

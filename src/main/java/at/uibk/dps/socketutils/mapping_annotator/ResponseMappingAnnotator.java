@@ -1,13 +1,13 @@
 package at.uibk.dps.socketutils.mapping_annotator;
 
 /**
- * The {@link MappingAnnotatorResponse} captures the structure of the json
+ * The {@link ResponseMappingAnnotator} captures the structure of the json
  * string used to transmit the attribute response of the annotator module.
  * 
  * @author Fedor Smirnov
  *
  */
-public class MappingAnnotatorResponse {
+public class ResponseMappingAnnotator {
 
 	protected final double attribute;
 	protected final boolean success;
@@ -20,7 +20,7 @@ public class MappingAnnotatorResponse {
 	 * @param success   true iff exchange successful
 	 * @param message   optional message string
 	 */
-	public MappingAnnotatorResponse(final double attribute, final boolean success, final String message) {
+	public ResponseMappingAnnotator(final double attribute, final boolean success, final String message) {
 		this.attribute = attribute;
 		this.success = success;
 		this.message = message;

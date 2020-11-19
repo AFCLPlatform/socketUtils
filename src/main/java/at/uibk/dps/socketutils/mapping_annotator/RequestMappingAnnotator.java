@@ -5,7 +5,7 @@ package at.uibk.dps.socketutils.mapping_annotator;
  * 
  * @author Fedor Smirnov
  */
-public class MappingAnnotatorRequest {
+public class RequestMappingAnnotator {
 
 	/**
 	 * The different types of requests sent to the mapping annotator.
@@ -31,7 +31,7 @@ public class MappingAnnotatorRequest {
 	 * 
 	 * @param requestType
 	 */
-	protected MappingAnnotatorRequest(final RequestType requestType) {
+	protected RequestMappingAnnotator(final RequestType requestType) {
 		this.requestType = requestType;
 	}
 

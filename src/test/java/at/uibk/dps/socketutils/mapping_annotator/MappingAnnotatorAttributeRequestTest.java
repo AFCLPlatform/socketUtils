@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import at.uibk.dps.socketutils.mapping_annotator.MappingAnnotatorRequest.RequestType;
+import at.uibk.dps.socketutils.mapping_annotator.RequestMappingAnnotator.RequestType;
 import net.sf.opendse.model.Mapping;
 import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;
@@ -19,7 +19,7 @@ public class MappingAnnotatorAttributeRequestTest {
 		Resource r = new Resource("r");
 		Mapping<Task, Resource> m = new Mapping<Task, Resource>("m", t, r);
 		RequestType typeMock = mock(RequestType.class);
-		MappingAnnotatorRequestAttribute tested = new MappingAnnotatorRequestAttribute(typeMock, m);
+		RequestMappingAnnotatorAttribute tested = new RequestMappingAnnotatorAttribute(typeMock, m);
 		assertEquals(typeMock, tested.getRequestType());
 	}
 	
@@ -29,7 +29,7 @@ public class MappingAnnotatorAttributeRequestTest {
 		Resource r = new Resource("r");
 		Mapping<Task, Resource> m = new Mapping<Task, Resource>("m", t, r);
 		RequestType typeMock = mock(RequestType.class);
-		MappingAnnotatorRequestAttribute tested = new MappingAnnotatorRequestAttribute(typeMock, m);
+		RequestMappingAnnotatorAttribute tested = new RequestMappingAnnotatorAttribute(typeMock, m);
 		assertEquals(new MappingStruct(m), tested.getMapping());
 	}
 }
