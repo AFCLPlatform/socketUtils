@@ -3,7 +3,7 @@ package at.uibk.dps.socketutils;
 /**
  * Constants defined within the network.
  */
-public final class NetworkConstants {
+public final class ConstantsNetwork {
 
     // module address information
 
@@ -46,6 +46,6 @@ public final class NetworkConstants {
     /**
      * Default constructor.
      */
-    private NetworkConstants() { }
+    private ConstantsNetwork() { }
 
 }

@@ -17,14 +17,14 @@ import java.util.logging.Logger;
  *
  * @author stefanpedratscher
  */
-public final class SocketUtils {
+public final class UtilsSocket {
 
-	private final static Logger LOGGER = Logger.getLogger(SocketUtils.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(UtilsSocket.class.getName());
 
 	/**
 	 * Default constructor.
 	 */
-	private SocketUtils() {
+	private UtilsSocket() {
 	}
 
 	/**
@@ -50,12 +50,12 @@ public final class SocketUtils {
 		LOGGER.info(new Supplier<String>() {
 			@Override
 			public String get() {
-				return "Sending " + jsonString + NetworkConstants.MESSAGE_TERMINATION_STRING;
+				return "Sending " + jsonString + ConstantsNetwork.MESSAGE_TERMINATION_STRING;
 			}
 		});
 		final OutputStreamWriter osw = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
-		osw.write(jsonString + NetworkConstants.MESSAGE_TERMINATION_STRING, 0,
-				jsonString.length() + NetworkConstants.MESSAGE_TERMINATION_STRING.length());
+		osw.write(jsonString + ConstantsNetwork.MESSAGE_TERMINATION_STRING, 0,
+				jsonString.length() + ConstantsNetwork.MESSAGE_TERMINATION_STRING.length());
 		osw.flush();
 	}
 
@@ -68,7 +68,7 @@ public final class SocketUtils {
 	 */
 	public static void sendJsonObject(final OutputStream outputStream, final JsonObject jsonObject) throws IOException {
 		sendJsonString(outputStream,
-				new GsonBuilder().setDateFormat(NetworkConstants.DATE_FORMAT).create().toJson(jsonObject));
+				new GsonBuilder().setDateFormat(ConstantsNetwork.DATE_FORMAT).create().toJson(jsonObject));
 	}
 
 	/**
@@ -80,7 +80,7 @@ public final class SocketUtils {
 	 */
 	public static <T> void sendJsonObject(final OutputStream outputStream, final T jsonObject) throws IOException {
 		sendJsonString(outputStream,
-				new GsonBuilder().setDateFormat(NetworkConstants.DATE_FORMAT).create().toJson(jsonObject));
+				new GsonBuilder().setDateFormat(ConstantsNetwork.DATE_FORMAT).create().toJson(jsonObject));
 	}
 
 	/**
@@ -129,7 +129,7 @@ public final class SocketUtils {
 	 * @throws IOException on failure.
 	 */
 	public static JsonObject receiveJsonObject(final InputStream inputStream) throws IOException {
-		return new GsonBuilder().setDateFormat(NetworkConstants.DATE_FORMAT).create()
+		return new GsonBuilder().setDateFormat(ConstantsNetwork.DATE_FORMAT).create()
 				.fromJson(receiveJsonString(inputStream), JsonObject.class);
 	}
 
@@ -142,7 +142,7 @@ public final class SocketUtils {
 	 */
 	public static <T> T receiveJsonObject(final InputStream inputStream, final Class<T> objectClass)
 			throws IOException {
-		return new GsonBuilder().setDateFormat(NetworkConstants.DATE_FORMAT).create()
+		return new GsonBuilder().setDateFormat(ConstantsNetwork.DATE_FORMAT).create()
 				.fromJson(receiveJsonString(inputStream), objectClass);
 	}
 
@@ -212,11 +212,11 @@ public final class SocketUtils {
 	 *         termination string of messages.
 	 */
 	private static boolean checkMessageEnd(final StringBuffer buffer) {
-		final int start = buffer.length() - NetworkConstants.MESSAGE_TERMINATION_STRING.length();
+		final int start = buffer.length() - ConstantsNetwork.MESSAGE_TERMINATION_STRING.length();
 		if (start < 0) {
 			return false;
 		} else {
-			return NetworkConstants.MESSAGE_TERMINATION_STRING.equals(buffer.substring(start));
+			return ConstantsNetwork.MESSAGE_TERMINATION_STRING.equals(buffer.substring(start));
 		}
 	}
 
@@ -227,7 +227,7 @@ public final class SocketUtils {
 	 * @return the message payload.
 	 */
 	private static String getJsonPayload(final StringBuffer msg) {
-		final int endLength = NetworkConstants.MESSAGE_TERMINATION_STRING.length();
+		final int endLength = ConstantsNetwork.MESSAGE_TERMINATION_STRING.length();
 		return msg.substring(0, msg.length() - endLength);
 	}
 }

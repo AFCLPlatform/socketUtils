@@ -10,12 +10,12 @@ import at.uibk.dps.socketutils.entity.FunctionDetails;
  *
  * @author stefanpedratscher
  */
-public final class SocketUtilsResourceManager {
+public final class UtilsSocketResourceManager {
 
 	/**
 	 * Class is a static method constructor.
 	 */
-	private SocketUtilsResourceManager() {
+	private UtilsSocketResourceManager() {
 	}
 
 	/**

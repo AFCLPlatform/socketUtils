@@ -13,14 +13,14 @@ import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;
 
 /**
- * The {@link SocketUtilsMappingAnnotator} is used to generate the
+ * The {@link UtilsSocketMappingAnnotator} is used to generate the
  * {@link RequestMappingAnnotatorAttribute} objects used for mapping queries to
  * the Attribute Annotator module.
  * 
  * @author Fedor Smirnov
  *
  */
-public final class SocketUtilsMappingAnnotator {
+public final class UtilsSocketMappingAnnotator {
 
 	/**
 	 * 
@@ -55,7 +55,7 @@ public final class SocketUtilsMappingAnnotator {
 	/**
 	 * Default constructor.
 	 */
-	private SocketUtilsMappingAnnotator() {
+	private UtilsSocketMappingAnnotator() {
 	}
 
 	/**
