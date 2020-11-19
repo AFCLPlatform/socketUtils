@@ -10,9 +10,22 @@ package at.uibk.dps.socketutils.entity;
  */
 public class ConfigurationAttribute {
 
+	/**
+	 * Identifier for the value.
+	 */
 	protected final String key;
+
+	/**
+	 * The actual value.
+	 */
 	protected final String value;
 
+	/**
+	 * Key-value pairs for request objects.
+	 *
+	 * @param key identify the value.
+	 * @param value the actual value.
+	 */
 	public ConfigurationAttribute(final String key, final String value) {
 		this.key = key;
 		this.value = value;

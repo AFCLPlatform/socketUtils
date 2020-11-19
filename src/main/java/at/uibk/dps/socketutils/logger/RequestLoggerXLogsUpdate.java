@@ -18,12 +18,11 @@ public class RequestLoggerXLogsUpdate extends RequestLogger{
 	 * Default constructor
 	 * 
 	 * @param execution the requested execution
-	 * @param executionId the ID of the requested Execution
 	 */
-	protected RequestLoggerXLogsUpdate(final Execution execution,final int executionId) {
+	protected RequestLoggerXLogsUpdate(final Execution execution) {
 		super(RequestLogger.RequestType.UPDATE_EXECUTION);
 		this.execution = execution;
-		this.executionId = executionId;
+		this.executionId = execution.getExecutionId();
 	}
 
 	public Execution getExecution() {

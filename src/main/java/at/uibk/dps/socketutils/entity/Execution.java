@@ -40,6 +40,11 @@ public class Execution {
     private Timestamp portalEnd;
 
     /**
+     * Identifier of the workflow execution.
+     */
+    private int executionId;
+
+    /**
      * Constructor for an execution.
      *
      * @param eeStart        start time of the enactment engine.
@@ -110,4 +115,8 @@ public class Execution {
     public void setPortalEnd(final Timestamp portalEnd) {
         this.portalEnd = portalEnd;
     }
+
+    public int getExecutionId() { return executionId; }
+
+    public void setExecutionId(int executionId) { this.executionId = executionId; }
 }

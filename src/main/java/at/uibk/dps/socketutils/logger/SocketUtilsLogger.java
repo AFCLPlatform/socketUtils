@@ -32,31 +32,53 @@ public final class SocketUtilsLogger {
 	/**
 	 * Generates a request to update the logs of a requested executution
 	 * 
-	 * TODO @stefan: Why do we need both parameters? Doesn't the ID already describe
-	 * the execution?
-	 * 
 	 * @param execution the execution
-	 * @param the       ID of the execution
 	 * @return a request to update the logs of a requested executution
 	 */
-	public static RequestLoggerXLogsUpdate generateRequestUpdateLog(final Execution execution,
-			final int executionId) {
-		return new RequestLoggerXLogsUpdate(execution, executionId);
+	public static RequestLoggerXLogsUpdate generateRequestUpdateLog(final Execution execution) {
+		return new RequestLoggerXLogsUpdate(execution);
 	}
 
+	/**
+	 * Generates a request to lookup base function logs of a specific execution in the database.
+	 *
+	 * @param executionId identifier of the workflow execution.
+	 * @return a request to lookup base function logs.
+	 */
 	public static RequestLoggerFunctionLog generateRequestFunctionLog(final int executionId) {
 		return new RequestLoggerFunctionLog(executionId);
 	}
 
+	/**
+	 * Generate a request to write an invocation to the database.
+	 *
+	 * @param invocation which should be written to tha database.
+	 * @param executionId identifier of the workflow execution.
+	 * @return a request to write an invocation to the database.
+	 */
 	public static RequestLoggerInvocationWrite generateRequestInovationWrite(final Invocation invocation,
 			final int executionId) {
 		return new RequestLoggerInvocationWrite(invocation, executionId);
 	}
 
+	/**
+	 * Generate a request to lookup the average execution time of a base function.
+	 *
+	 * @param functionLink resource of the function.
+	 * @return a request to lookup average execution time of a base function.
+	 */
 	public static RequestLoggerFuncXTimeAvg generateRequestFuncXTimeAvg(final String functionLink) {
 		return new RequestLoggerFuncXTimeAvg(functionLink);
 	}
 
+	/**
+	 * Generate the object representing a response of the logger.
+	 *
+	 * @param executionId identifier of the workflow execution.
+	 * @param avgExecutionTime average execution time.
+	 * @param invocations of the base functions.
+	 * @return response object of the logger.
+	 */
 	public static ResponseLogger generateResponse(final int executionId, final BigDecimal avgExecutionTime,
 			final List<Invocation> invocations) {
 		return new ResponseLogger(executionId, avgExecutionTime, invocations);

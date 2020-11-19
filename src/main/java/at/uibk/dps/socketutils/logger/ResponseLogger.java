@@ -28,6 +28,13 @@ public class ResponseLogger {
 	 */
 	protected final List<Invocation> invocations;
 
+	/**
+	 * Represents the response of the invocation log manager.
+	 *
+	 * @param executionId identifier of the workflow execution.
+	 * @param avgExecutionTime average execution time.
+	 * @param invocations of the base functions.
+	 */
 	public ResponseLogger(final int executionId, final BigDecimal avgExecutionTime,
 			final List<Invocation> invocations) {
 		this.executionId = executionId;
