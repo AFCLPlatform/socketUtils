@@ -11,12 +11,12 @@ public class RequestEnactmentEngine {
 	/**
 	 * Content of the workflow yaml file.
 	 */
-	protected final byte[] workflowFileContent;
+	protected final byte[] workflow;
 
 	/**
 	 * Content of the workflow input json file.
 	 */
-	protected final byte[] workflowInputFileContent;
+	protected final byte[] workflowInput;
 
 	/**
 	 * Log results in database
@@ -28,29 +28,37 @@ public class RequestEnactmentEngine {
 	 *
 	 * @param workflowFile content of the workflow file.
 	 */
-	public RequestEnactmentEngine(final byte[] workflowFile, final boolean logResults) {
+	protected RequestEnactmentEngine(final byte[] workflowFile, final boolean logResults) {
 		this(workflowFile, null, logResults);
 	}
 
 	/**
 	 * Constructor for enactment engine request
 	 *
-	 * @param workflowFileContent      content of the workflow file.
-	 * @param workflowInputFileContent content of the workflow input file.
+	 * @param workflow      content of the workflow file.
+	 * @param workflowInput content of the workflow input file.
 	 */
-	public RequestEnactmentEngine(final byte[] workflowFileContent, final byte[] workflowInputFileContent,
+	protected RequestEnactmentEngine(final byte[] workflow, final byte[] workflowInput,
 			final boolean logResults) {
 		this.logResults = logResults;
-		this.workflowFileContent = workflowFileContent.clone();
-		this.workflowInputFileContent = workflowInputFileContent.clone();
+		this.workflow = workflow.clone();
+		if (workflowInput == null) {
+			this.workflowInput = null;
+		} else {
+			this.workflowInput = workflowInput.clone();
+		}
 	}
 
-	public byte[] getWorkflowFileContent() {
-		return workflowFileContent.clone();
+	public byte[] getWorkflow() {
+		return workflow.clone();
 	}
 
-	public byte[] getWorkflowInputFileContent() {
-		return workflowInputFileContent.clone();
+	public byte[] getWorkflowInput() {
+		if (workflowInput == null) {
+			throw new IllegalStateException("Workflow input not set, but requested.");
+		} else {
+			return workflowInput.clone();
+		}
 	}
 
 	public boolean isLogResults() {
