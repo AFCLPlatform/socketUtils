@@ -10,12 +10,12 @@ import java.util.List;
  * 
  * @author Fedor Smirnov
  */
-public final class SocketUtilsImplementationDb {
+public final class UtilsSocketImplementationDb {
 
 	/**
 	 * Static container => no constructor
 	 */
-	private SocketUtilsImplementationDb() {
+	private UtilsSocketImplementationDb() {
 	}
 
 	/**

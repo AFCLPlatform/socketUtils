@@ -17,12 +17,12 @@ import at.uibk.dps.socketutils.entity.Statistics;
  *
  * @author stefanpedratscher
  */
-public final class SocketUtilsScheduler {
+public final class UtilsSocketScheduler {
 
 	/**
 	 * Default constructor.
 	 */
-	private SocketUtilsScheduler() {
+	private UtilsSocketScheduler() {
 	}
 
 	/**

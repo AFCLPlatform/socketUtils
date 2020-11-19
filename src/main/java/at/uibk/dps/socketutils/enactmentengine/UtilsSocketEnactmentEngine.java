@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.google.gson.JsonObject;
 
-import at.uibk.dps.socketutils.SocketUtils;
+import at.uibk.dps.socketutils.UtilsSocket;
 import at.uibk.dps.socketutils.entity.Statistics;
 
 /**
@@ -13,12 +13,12 @@ import at.uibk.dps.socketutils.entity.Statistics;
  *
  * @author stefanpedratscher
  */
-public final class SocketUtilsEnactmentEngine {
+public final class UtilsSocketEnactmentEngine {
 
 	/**
 	 * Method used as static method container
 	 */
-	private SocketUtilsEnactmentEngine() {
+	private UtilsSocketEnactmentEngine() {
 	}
 
 	/**
@@ -49,7 +49,7 @@ public final class SocketUtilsEnactmentEngine {
 	 */
 	public static RequestEnactmentEngine generateRequest(final String filePath, final byte[] inputContent,
 			final boolean logResults) throws IOException {
-		final byte[] workFlowData = SocketUtils.readFileToBytes(filePath);
+		final byte[] workFlowData = UtilsSocket.readFileToBytes(filePath);
 		if (inputContent == null) {
 			return generateRequest(workFlowData, logResults);
 		} else {

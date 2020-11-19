@@ -12,12 +12,12 @@ import at.uibk.dps.socketutils.entity.Invocation;
  * @author Fedor Smirnov
  *
  */
-public final class SocketUtilsLogger {
+public final class UtilsSocketLogger {
 
 	/**
 	 * Static container.
 	 */
-	private SocketUtilsLogger() {
+	private UtilsSocketLogger() {
 	}
 
 	/**

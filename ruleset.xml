@@ -42,6 +42,18 @@
     <rule ref="category/java/security.xml" />
 
 
+	<!-- Naming Conventions -->
+	<rule ref="category/apex/codestyle.xml/ClassNamingConventions">
+	    <properties>
+	        <property name="testClassPattern" value="[A-Z][a-zA-Z0-9_]*" />
+	        <property name="abstractClassPattern" value="[A-Z][a-zA-Z0-9_]*" />
+	        <property name="classPattern" value="[A-Z][a-zA-Z0-9_]*" />
+	        <property name="interfacePattern" value="[A-Z][a-zA-Z0-9_]*" />
+	        <property name="enumPattern" value="[A-Z][a-zA-Z0-9_]*" />
+	    </properties>
+	</rule>
+
+
 	<!-- Comment requirements -->
 	<rule ref="category/java/documentation.xml/CommentRequired">
 	    <properties>

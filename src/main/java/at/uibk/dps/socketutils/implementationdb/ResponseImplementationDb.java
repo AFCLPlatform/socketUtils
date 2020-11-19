@@ -19,7 +19,7 @@ public class ResponseImplementationDb {
 	protected final List<FunctionDetails> implementations;
 
 	/**
-	 * Setter constructor (used by the {@link SocketUtilsImplementationDb}).
+	 * Setter constructor (used by the {@link UtilsSocketImplementationDb}).
 	 * 
 	 * @param implementations
 	 */

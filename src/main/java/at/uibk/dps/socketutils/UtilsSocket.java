@@ -17,14 +17,14 @@ import java.util.logging.Logger;
  *
  * @author stefanpedratscher
  */
-public final class SocketUtils {
+public final class UtilsSocket {
 
-	private final static Logger LOGGER = Logger.getLogger(SocketUtils.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(UtilsSocket.class.getName());
 
 	/**
 	 * Default constructor.
 	 */
-	private SocketUtils() {
+	private UtilsSocket() {
 	}
 
 	/**

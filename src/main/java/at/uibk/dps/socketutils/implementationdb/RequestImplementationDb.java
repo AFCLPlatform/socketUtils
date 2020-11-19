@@ -14,7 +14,7 @@ public class RequestImplementationDb {
 	protected final String functionType;
 
 	/**
-	 * Setter constructor (used by the {@link SocketUtilsImplementationDb}.)
+	 * Setter constructor (used by the {@link UtilsSocketImplementationDb}.)
 	 * 
 	 * @param functionType
 	 */
