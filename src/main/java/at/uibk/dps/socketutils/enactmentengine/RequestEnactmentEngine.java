@@ -38,12 +38,11 @@ public class RequestEnactmentEngine {
 	 * @param workflow      content of the workflow file.
 	 * @param workflowInput content of the workflow input file.
 	 */
-	protected RequestEnactmentEngine(final byte[] workflow, final byte[] workflowInput,
-			final boolean logResults) {
+	protected RequestEnactmentEngine(final byte[] workflow, final byte[] workflowInput, final boolean logResults) {
 		this.logResults = logResults;
 		this.workflow = workflow.clone();
 		if (workflowInput == null) {
-			this.workflowInput = null;
+			this.workflowInput = workflowInput;
 		} else {
 			this.workflowInput = workflowInput.clone();
 		}

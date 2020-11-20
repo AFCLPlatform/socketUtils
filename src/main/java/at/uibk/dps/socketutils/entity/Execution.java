@@ -9,132 +9,132 @@ import java.sql.Timestamp;
  */
 public class Execution {
 
-    /**
-     * Start time of the enactment engine.
-     */
-    private Timestamp eeStart;
+	/**
+	 * Start time of the enactment engine.
+	 */
+	protected final Timestamp eeStart;
 
-    /**
-     * End time of the enactment engine.
-     */
-    private Timestamp eeEnd;
+	/**
+	 * End time of the enactment engine.
+	 */
+	protected final Timestamp eeEnd;
 
-    /**
-     * Start time of the scheduler.
-     */
-    private Timestamp schedulerStart;
+	/**
+	 * Start time of the scheduler.
+	 */
+	protected final Timestamp schedulerStart;
 
-    /**
-     * End time of the scheduler.
-     */
-    private Timestamp schedulerEnd;
+	/**
+	 * End time of the scheduler.
+	 */
+	protected final Timestamp schedulerEnd;
 
-    /**
-     * Start time of the portal.
-     */
-    private Timestamp portalStart;
+	/**
+	 * Start time of the portal.
+	 */
+	protected final Timestamp portalStart;
 
-    /**
-     * End time of the portal.
-     */
-    private Timestamp portalEnd;
+	/**
+	 * End time of the portal.
+	 */
+	protected final Timestamp portalEnd;
 
-    /**
-     * Identifier of the workflow execution.
-     */
-    private int executionId;
+	/**
+	 * Identifier of the workflow execution.
+	 */
+	protected final int executionId;
 
-    /**
-     * Constructor for an execution.
-     *
-     * @param eeStart        start time of the enactment engine.
-     * @param eeEnd          end time of the enactment engine.
-     * @param schedulerStart start time of the scheduler.
-     * @param schedulerEnd   end time of the scheduler.
-     * @param portalStart    start time of the portal.
-     * @param portalEnd      end time of the portal.
-     */
-    public Execution(final Timestamp eeStart, final Timestamp eeEnd, final Timestamp schedulerStart,
-                     final Timestamp schedulerEnd, final Timestamp portalStart, final Timestamp portalEnd) {
-        this.eeStart = eeStart;
-        this.eeEnd = eeEnd;
-        this.schedulerStart = schedulerStart;
-        this.schedulerEnd = schedulerEnd;
-        this.portalStart = portalStart;
-        this.portalEnd = portalEnd;
-    }
+	/**
+	 * True iff this execution shall be logged.
+	 */
+	protected final boolean beingLogged;
 
-    /**
-     * Constructor for an execution.
-     *
-     * @param eeStart        start time of the enactment engine.
-     * @param eeEnd          end time of the enactment engine.
-     * @param schedulerStart start time of the scheduler.
-     * @param schedulerEnd   end time of the scheduler.
-     * @param portalStart    start time of the portal.
-     * @param portalEnd      end time of the portal.
-     * @param executionId    identifier of a workflow execution.
-     */
-    public Execution(final Timestamp eeStart, final Timestamp eeEnd, final Timestamp schedulerStart,
-                     final Timestamp schedulerEnd, final Timestamp portalStart, final Timestamp portalEnd,
-                     final int executionId) {
-        this(eeStart,eeEnd,schedulerStart,schedulerEnd,portalStart,portalEnd);
-        this.executionId = executionId;
-    }
+	/**
+	 * Constructor for an execution which is not logged.
+	 *
+	 * @param eeStart        start time of the enactment engine.
+	 * @param eeEnd          end time of the enactment engine.
+	 * @param schedulerStart start time of the scheduler.
+	 * @param schedulerEnd   end time of the scheduler.
+	 * @param portalStart    start time of the portal.
+	 * @param portalEnd      end time of the portal.
+	 */
+	public Execution(final Timestamp eeStart, final Timestamp eeEnd, final Timestamp schedulerStart,
+			final Timestamp schedulerEnd, final Timestamp portalStart, final Timestamp portalEnd) {
+		this.eeStart = eeStart;
+		this.eeEnd = eeEnd;
+		this.schedulerStart = schedulerStart;
+		this.schedulerEnd = schedulerEnd;
+		this.portalStart = portalStart;
+		this.portalEnd = portalEnd;
+		this.executionId = -1;
+		this.beingLogged = false;
+	}
 
-    /**
-     * Getter and Setter
-     */
+	/**
+	 * Constructor for an execution which is logged.
+	 *
+	 * @param eeStart        start time of the enactment engine.
+	 * @param eeEnd          end time of the enactment engine.
+	 * @param schedulerStart start time of the scheduler.
+	 * @param schedulerEnd   end time of the scheduler.
+	 * @param portalStart    start time of the portal.
+	 * @param portalEnd      end time of the portal.
+	 * @param executionId    identifier of a workflow execution.
+	 */
+	public Execution(final Timestamp eeStart, final Timestamp eeEnd, final Timestamp schedulerStart,
+			final Timestamp schedulerEnd, final Timestamp portalStart, final Timestamp portalEnd,
+			final int executionId) {
+		this.eeStart = eeStart;
+		this.eeEnd = eeEnd;
+		this.schedulerStart = schedulerStart;
+		this.schedulerEnd = schedulerEnd;
+		this.portalStart = portalStart;
+		this.portalEnd = portalEnd;
+		this.executionId = executionId;
+		this.beingLogged = true;
+	}
 
-    public Timestamp getEeStart() {
-        return eeStart;
-    }
+	public Timestamp getEeStart() {
+		return eeStart;
+	}
 
-    public void setEeStart(final Timestamp eeStart) {
-        this.eeStart = eeStart;
-    }
+	public Timestamp getEeEnd() {
+		return eeEnd;
+	}
 
-    public Timestamp getEeEnd() {
-        return eeEnd;
-    }
+	public Timestamp getSchedulerStart() {
+		return schedulerStart;
+	}
 
-    public void setEeEnd(final Timestamp eeEnd) {
-        this.eeEnd = eeEnd;
-    }
+	public Timestamp getSchedulerEnd() {
+		return schedulerEnd;
+	}
 
-    public Timestamp getSchedulerStart() {
-        return schedulerStart;
-    }
+	public Timestamp getPortalStart() {
+		return portalStart;
+	}
 
-    public void setSchedulerStart(final Timestamp schedulerStart) {
-        this.schedulerStart = schedulerStart;
-    }
+	public Timestamp getPortalEnd() {
+		return portalEnd;
+	}
 
-    public Timestamp getSchedulerEnd() {
-        return schedulerEnd;
-    }
+	public boolean isBeingLogged() {
+		return beingLogged;
+	}
 
-    public void setSchedulerEnd(final Timestamp schedulerEnd) {
-        this.schedulerEnd = schedulerEnd;
-    }
-
-    public Timestamp getPortalStart() {
-        return portalStart;
-    }
-
-    public void setPortalStart(final Timestamp portalStart) {
-        this.portalStart = portalStart;
-    }
-
-    public Timestamp getPortalEnd() {
-        return portalEnd;
-    }
-
-    public void setPortalEnd(final Timestamp portalEnd) {
-        this.portalEnd = portalEnd;
-    }
-
-    public int getExecutionId() { return executionId; }
-
-    public void setExecutionId(final int executionId) { this.executionId = executionId; }
+	/**
+	 * Returns the execution ID of the execution. Throws an
+	 * {@link IllegalStateException} in case the ID is not set. Use the
+	 * isBeingLogged method to check whether to use this method.
+	 * 
+	 * @return the execution id of the method.
+	 */
+	public int getExecutionId() {
+		if (beingLogged) {
+			return executionId;
+		} else {
+			throw new IllegalStateException("Executions which are not logged don't have an Exec ID.");
+		}
+	}
 }
