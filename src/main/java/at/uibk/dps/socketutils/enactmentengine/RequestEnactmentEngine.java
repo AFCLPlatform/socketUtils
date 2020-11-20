@@ -16,20 +16,24 @@ public class RequestEnactmentEngine {
 	/**
 	 * Content of the workflow input json file.
 	 */
-	protected final byte[] workflowInput;
+	protected byte[] workflowInput;
 
 	/**
 	 * Log results in database
 	 */
 	protected final boolean logResults;
 
+	protected final boolean hasInput;
+
 	/**
 	 * Default constructor.
 	 *
 	 * @param workflowFile content of the workflow file.
 	 */
-	protected RequestEnactmentEngine(final byte[] workflowFile, final boolean logResults) {
-		this(workflowFile, null, logResults);
+	protected RequestEnactmentEngine(final byte[] workflow, final boolean logResults) {
+		this.logResults = logResults;
+		this.workflow = workflow.clone();
+		this.hasInput = false;
 	}
 
 	/**
@@ -41,11 +45,8 @@ public class RequestEnactmentEngine {
 	protected RequestEnactmentEngine(final byte[] workflow, final byte[] workflowInput, final boolean logResults) {
 		this.logResults = logResults;
 		this.workflow = workflow.clone();
-		if (workflowInput == null) {
-			this.workflowInput = workflowInput;
-		} else {
-			this.workflowInput = workflowInput.clone();
-		}
+		this.workflowInput = workflowInput.clone();
+		this.hasInput = true;
 	}
 
 	public byte[] getWorkflow() {
@@ -53,10 +54,10 @@ public class RequestEnactmentEngine {
 	}
 
 	public byte[] getWorkflowInput() {
-		if (workflowInput == null) {
-			throw new IllegalStateException("Workflow input not set, but requested.");
-		} else {
+		if (hasInput) {
 			return workflowInput.clone();
+		} else {
+			throw new IllegalStateException("Workflow input not set, but requested.");
 		}
 	}
 
