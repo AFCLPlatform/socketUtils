@@ -26,7 +26,7 @@ public class RequestLoggerInvocationWrite extends RequestLogger {
 	 * @param executionId identifier of the workflow execution.
 	 */
 	protected RequestLoggerInvocationWrite(final Invocation invocation, final int executionId) {
-		super(RequestLogger.RequestType.INSERT_INVOCATION);
+		super(RequestLogger.RequestType.INVOCATION_WRITE);
 		this.invocation = invocation;
 		this.executionId = executionId;
 	}

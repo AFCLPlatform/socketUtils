@@ -14,7 +14,7 @@ public class RequestLogger {
 	 * @author Fedor Smirnov
 	 */
 	public enum RequestType {
-		GET_EXECUTION_ID, UPDATE_EXECUTION, INSERT_EXECUTION, INSERT_INVOCATION, GET_INVOCATIONS, GET_AVG_EXEC_TIME
+		GET_EXECUTION_ID, UPDATE_EXECUTION, INSERT_EXECUTION, INVOCATION_WRITE, FUNCTION_LOG, GET_AVG_EXEC_TIME
 	}
 
 	protected final RequestType requestType;

@@ -20,7 +20,7 @@ public class RequestLoggerFunctionLog extends RequestLogger {
 	 * @param executionId identifier of the workflow execution.
 	 */
 	protected RequestLoggerFunctionLog(final int executionId) {
-		super(RequestLogger.RequestType.GET_INVOCATIONS);
+		super(RequestLogger.RequestType.FUNCTION_LOG);
 		this.executionId = executionId;
 	}
 

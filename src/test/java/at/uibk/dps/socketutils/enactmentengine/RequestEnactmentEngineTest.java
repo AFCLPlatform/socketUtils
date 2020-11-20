@@ -17,9 +17,9 @@ public class RequestEnactmentEngineTest {
 		wf[0] = 1;
 		wf[1] = 2;
 		final byte[] input = new byte[3];
-		input [0] = 1;
-		input [1] = 2;
-		input [2] = 3;
+		input[0] = 1;
+		input[1] = 2;
+		input[2] = 3;
 		final boolean logResults = true;
 		RequestEnactmentEngine tested = new RequestEnactmentEngine(wf, input, logResults);
 		assertTrue(tested.isLogResults());
@@ -27,8 +27,9 @@ public class RequestEnactmentEngineTest {
 		assertNotEquals(input, tested.getWorkflowInput());
 		assertTrue(Arrays.equals(wf, tested.getWorkflow()));
 		assertTrue(Arrays.equals(input, tested.getWorkflowInput()));
+		assertTrue(tested.isExecutedWithInput());
 	}
-	
+
 	/**
 	 * Tests the missing input exception.
 	 */
@@ -42,6 +43,7 @@ public class RequestEnactmentEngineTest {
 		assertTrue(tested.isLogResults());
 		assertNotEquals(wf, tested.getWorkflow());
 		assertTrue(Arrays.equals(wf, tested.getWorkflow()));
+		assertFalse(tested.isExecutedWithInput());
 		tested.getWorkflowInput();
 	}
 }

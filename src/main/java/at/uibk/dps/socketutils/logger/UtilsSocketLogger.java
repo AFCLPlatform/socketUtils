@@ -57,7 +57,7 @@ public final class UtilsSocketLogger {
 	 * @param executionId identifier of the workflow execution.
 	 * @return a request to write an invocation to the database.
 	 */
-	public static RequestLoggerInvocationWrite generateRequestInovationWrite(final Invocation invocation,
+	public static RequestLoggerInvocationWrite generateRequestInvocationWrite(final Invocation invocation,
 			final int executionId) {
 		return new RequestLoggerInvocationWrite(invocation, executionId);
 	}
