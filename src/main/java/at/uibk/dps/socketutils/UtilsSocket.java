@@ -100,7 +100,7 @@ public final class UtilsSocket {
 	/**
 	 * Receives and returns a json string from the given socket.
 	 *
-	 * @param sourceSocket the socket to listen to.
+	 * @param inputStream the input stream.
 	 * @return the json string.
 	 * @throws IOException on failure.
 	 */
