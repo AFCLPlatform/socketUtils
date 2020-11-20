@@ -100,7 +100,7 @@ public final class UtilsSocket {
 	/**
 	 * Receives and returns a json string from the given socket.
 	 *
-	 * @param sourceSocket the socket to listen to.
+	 * @param inputStream the input stream.
 	 * @return the json string.
 	 * @throws IOException on failure.
 	 */
@@ -229,5 +229,63 @@ public final class UtilsSocket {
 	private static String getJsonPayload(final StringBuffer msg) {
 		final int endLength = ConstantsNetwork.MESSAGE_TERMINATION_STRING.length();
 		return msg.substring(0, msg.length() - endLength);
+	}
+
+	private static String f1(final StringBuffer msg) {
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		return "test";
+	}
+
+	private static String f2(final StringBuffer msg) {
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		System.out.println("1");
+		return "test";
 	}
 }
