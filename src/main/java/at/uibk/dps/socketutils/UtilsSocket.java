@@ -1,8 +1,6 @@
 package at.uibk.dps.socketutils;
 
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-
 import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -117,7 +115,7 @@ public final class UtilsSocket {
 	 * @return the json object.
 	 * @throws IOException on failure.
 	 */
-	public static <T> T receiveJsonObject(final InputStream inputStream, Class<T> objectClass) throws IOException {
+	public static <T> T receiveJsonObject(final InputStream inputStream, final Class<T> objectClass) throws IOException {
 		return new GsonBuilder().setDateFormat(ConstantsNetwork.DATE_FORMAT).create()
 				.fromJson(receiveJsonString(inputStream), objectClass);
 	}
