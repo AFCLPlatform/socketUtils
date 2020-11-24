@@ -1,6 +1,7 @@
 package at.uibk.dps.socketutils.mapping_annotator;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
@@ -24,8 +25,9 @@ public class MappingStructTest {
 		MappingStruct tested1 = new MappingStruct(m);
 		MappingStruct tested2 = new MappingStruct(m);
 		assertEquals(tested1, tested2);
+		assertNotEquals(tested1, new Object());
 	}
-	
+
 	/**
 	 * Test for the practical usage of the hash method
 	 */
@@ -33,10 +35,15 @@ public class MappingStructTest {
 	public void testHash() {
 		Task t = new Task("t");
 		Resource res = new Resource("r");
+		Task otherT = new Task("otherT");
+		Resource otherR = new Resource("otherR");
+		var otherMapping = new Mapping<>("otherM", otherT, otherR);
 		Mapping<Task, Resource> m = new Mapping<Task, Resource>("m", t, res);
 		MappingStruct tested1 = new MappingStruct(m);
 		MappingStruct tested2 = new MappingStruct(m);
+		MappingStruct tested3 = new MappingStruct(otherMapping);
 		assertEquals(tested1.hashCode(), tested2.hashCode());
+		assertNotEquals(tested1.hashCode(), tested3.hashCode());
 	}
 
 	@Test
