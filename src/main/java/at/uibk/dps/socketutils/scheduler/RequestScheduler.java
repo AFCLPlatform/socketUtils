@@ -33,7 +33,7 @@ public class RequestScheduler {
 	 * @param workflow content of the workflow file.
 	 */
 	public RequestScheduler(final byte[] workflow) {
-		this.workflow = workflow;
+		this.workflow = workflow.clone();
 		this.schedulerConfig = new byte[1];
 		this.workflowInput = new byte[1];
 		this.scheduleConfigSet = false;
