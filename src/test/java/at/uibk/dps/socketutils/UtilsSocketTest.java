@@ -78,7 +78,7 @@ public class UtilsSocketTest {
 		byte[] byteInput = (jsonMock.toString() + ConstantsNetwork.MESSAGE_TERMINATION_STRING).getBytes();
 		InputStream inputStream = new ByteArrayInputStream(byteInput);
 		try {
-			JsonObject result = UtilsSocket.receiveJsonObject(inputStream);
+			JsonObject result = UtilsSocket.receiveJsonObject(inputStream, JsonObject.class);
 			assertEquals("{\"key\":\"value\"}", result.toString());
 		} catch (IOException ioExc) {
 			fail("IOExecption when testing the receiving of the Json string.");

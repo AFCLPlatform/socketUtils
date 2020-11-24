@@ -66,11 +66,11 @@ public final class UtilsSocket {
 	 * @param jsonObject   to convert to string and send to socket.
 	 * @throws IOException on failure.
 	 */
-	public static void sendJsonObject(final OutputStream outputStream, final JsonObject jsonObject) throws IOException {
+	public static<T> void sendJsonObject(final OutputStream outputStream, final T jsonObject) throws IOException {
 		sendJsonString(outputStream,
 				new GsonBuilder().setDateFormat(ConstantsNetwork.DATE_FORMAT).create().toJson(jsonObject));
 	}
-
+	
 	/**
 	 * Sends the give byte[] to the given socket.
 	 *
@@ -113,12 +113,13 @@ public final class UtilsSocket {
 	 * Receives and returns a json object from the given socket.
 	 *
 	 * @param inputStream the input stream to listen to
+	 * @param objectClass the class of the expected object
 	 * @return the json object.
 	 * @throws IOException on failure.
 	 */
-	public static JsonObject receiveJsonObject(final InputStream inputStream) throws IOException {
+	public static <T> T receiveJsonObject(final InputStream inputStream, Class<T> objectClass) throws IOException {
 		return new GsonBuilder().setDateFormat(ConstantsNetwork.DATE_FORMAT).create()
-				.fromJson(receiveJsonString(inputStream), JsonObject.class);
+				.fromJson(receiveJsonString(inputStream), objectClass);
 	}
 
 	/**
