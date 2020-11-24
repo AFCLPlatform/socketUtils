@@ -186,7 +186,7 @@ public final class UtilsSocket {
 	 * @return {@code true} iff the given buffer ends with the string defined as the
 	 *         termination string of messages.
 	 */
-	static boolean checkMessageEnd(final StringBuffer buffer) {
+	protected static boolean checkMessageEnd(final StringBuffer buffer) {
 		final int start = buffer.length() - ConstantsNetwork.MESSAGE_TERMINATION_STRING.length();
 		if (start < 0) {
 			return false;
@@ -201,7 +201,7 @@ public final class UtilsSocket {
 	 * @param msg the raw message.
 	 * @return the message payload.
 	 */
-	static String getJsonPayload(final StringBuffer msg) {
+	protected static String getJsonPayload(final StringBuffer msg) {
 		if (!checkMessageEnd(msg)) {
 			throw new IllegalArgumentException("Provided message does not end with the agreed-upon string");
 		}

@@ -27,6 +27,7 @@
     <rule ref="category/java/codestyle.xml"> 
     	<exclude name="OnlyOneReturn"/>
     	<exclude name="ClassNamingConventions"/>
+    	<exclude name="AvoidProtectedMethodInFinalClassNotExtending"/>
     </rule>
     <rule ref="category/java/design.xml">
     	<exclude name="LawOfDemeter"/>
