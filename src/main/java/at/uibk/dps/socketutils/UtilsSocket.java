@@ -40,7 +40,7 @@ public final class UtilsSocket {
 	}
 
 	/**
-	 * Sends the given Json String to the given socket.
+	 * Sends the given Json String to the given output stream.
 	 *
 	 * @param outputStream the output stream to send to
 	 * @param jsonString   to send.
@@ -67,18 +67,6 @@ public final class UtilsSocket {
 	 * @throws IOException on failure.
 	 */
 	public static void sendJsonObject(final OutputStream outputStream, final JsonObject jsonObject) throws IOException {
-		sendJsonString(outputStream,
-				new GsonBuilder().setDateFormat(ConstantsNetwork.DATE_FORMAT).create().toJson(jsonObject));
-	}
-
-	/**
-	 * Sends the given generic Json Object to the given socket.
-	 *
-	 * @param outputStream the output stream to send to
-	 * @param jsonObject   to convert to string and send to socket.
-	 * @throws IOException on failure.
-	 */
-	public static <T> void sendJsonObject(final OutputStream outputStream, final T jsonObject) throws IOException {
 		sendJsonString(outputStream,
 				new GsonBuilder().setDateFormat(ConstantsNetwork.DATE_FORMAT).create().toJson(jsonObject));
 	}
@@ -131,19 +119,6 @@ public final class UtilsSocket {
 	public static JsonObject receiveJsonObject(final InputStream inputStream) throws IOException {
 		return new GsonBuilder().setDateFormat(ConstantsNetwork.DATE_FORMAT).create()
 				.fromJson(receiveJsonString(inputStream), JsonObject.class);
-	}
-
-	/**
-	 * Receives and returns a generic json object from the given socket.
-	 *
-	 * @param inputStream the input stream to listen to
-	 * @return the generic json object.
-	 * @throws IOException on failure.
-	 */
-	public static <T> T receiveJsonObject(final InputStream inputStream, final Class<T> objectClass)
-			throws IOException {
-		return new GsonBuilder().setDateFormat(ConstantsNetwork.DATE_FORMAT).create()
-				.fromJson(receiveJsonString(inputStream), objectClass);
 	}
 
 	/**
@@ -211,7 +186,7 @@ public final class UtilsSocket {
 	 * @return {@code true} iff the given buffer ends with the string defined as the
 	 *         termination string of messages.
 	 */
-	private static boolean checkMessageEnd(final StringBuffer buffer) {
+	protected static boolean checkMessageEnd(final StringBuffer buffer) {
 		final int start = buffer.length() - ConstantsNetwork.MESSAGE_TERMINATION_STRING.length();
 		if (start < 0) {
 			return false;
@@ -226,7 +201,10 @@ public final class UtilsSocket {
 	 * @param msg the raw message.
 	 * @return the message payload.
 	 */
-	private static String getJsonPayload(final StringBuffer msg) {
+	protected static String getJsonPayload(final StringBuffer msg) {
+		if (!checkMessageEnd(msg)) {
+			throw new IllegalArgumentException("Provided message does not end with the agreed-upon string");
+		}
 		final int endLength = ConstantsNetwork.MESSAGE_TERMINATION_STRING.length();
 		return msg.substring(0, msg.length() - endLength);
 	}

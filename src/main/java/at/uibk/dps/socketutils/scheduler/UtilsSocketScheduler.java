@@ -56,7 +56,7 @@ public final class UtilsSocketScheduler {
 	 * @return the orchestration request sent to the scheduler
 	 */
 	public static RequestScheduler generateRequest(final byte[] workflow, final byte[] schedulerConfig) {
-		return new RequestScheduler(workflow, null, schedulerConfig);
+		return new RequestScheduler(workflow, schedulerConfig);
 	}
 
 	/**
